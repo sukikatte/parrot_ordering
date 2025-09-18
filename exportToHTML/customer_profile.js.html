@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>customer_profile.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #bcbec4;}
+.s2 { color: #6aab73;}
+.s3 { color: #cf8e6d;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+customer_profile.js</font>
+</center></td></tr></table>
+<pre><span class="s0">document</span><span class="s1">.</span><span class="s0">addEventListener</span><span class="s1">(</span><span class="s2">'DOMContentLoaded'</span><span class="s1">, </span><span class="s3">function</span><span class="s1">() {</span>
+    <span class="s4">// 假设有一个保存按钮和删除按钮</span>
+    <span class="s3">const </span><span class="s0">saveButton </span><span class="s1">= </span><span class="s0">document</span><span class="s1">.</span><span class="s0">querySelector</span><span class="s1">(</span><span class="s2">'button.save'</span><span class="s1">);</span>
+    <span class="s3">const </span><span class="s0">deleteButton </span><span class="s1">= </span><span class="s0">document</span><span class="s1">.</span><span class="s0">querySelector</span><span class="s1">(</span><span class="s2">'button.delete'</span><span class="s1">);</span>
+
+    <span class="s0">saveButton</span><span class="s1">.</span><span class="s0">addEventListener</span><span class="s1">(</span><span class="s2">'click'</span><span class="s1">, </span><span class="s3">function</span><span class="s1">() {</span>
+        <span class="s3">const </span><span class="s0">intro </span><span class="s1">= </span><span class="s0">document</span><span class="s1">.</span><span class="s0">querySelector</span><span class="s1">(</span><span class="s2">'textarea'</span><span class="s1">).</span><span class="s0">value</span><span class="s1">;</span>
+        <span class="s4">// 发送POST请求到服务器以更新数据</span>
+        <span class="s0">fetch</span><span class="s1">(</span><span class="s2">'/update_profile'</span><span class="s1">, {</span>
+            <span class="s0">method</span><span class="s1">: </span><span class="s2">'POST'</span><span class="s1">,</span>
+            <span class="s0">headers</span><span class="s1">: {</span>
+                <span class="s2">'Content-Type'</span><span class="s1">: </span><span class="s2">'application/json'</span>
+            <span class="s1">},</span>
+            <span class="s0">body</span><span class="s1">: </span><span class="s0">JSON</span><span class="s1">.</span><span class="s0">stringify</span><span class="s1">({ </span><span class="s0">introduction</span><span class="s1">: </span><span class="s0">intro </span><span class="s1">})</span>
+        <span class="s1">})</span>
+        <span class="s1">.</span><span class="s0">then</span><span class="s1">(</span><span class="s0">response </span><span class="s1">=&gt; </span><span class="s0">response</span><span class="s1">.</span><span class="s0">json</span><span class="s1">())</span>
+        <span class="s1">.</span><span class="s0">then</span><span class="s1">(</span><span class="s0">data </span><span class="s1">=&gt; {</span>
+            <span class="s0">alert</span><span class="s1">(</span><span class="s0">data</span><span class="s1">.</span><span class="s0">message</span><span class="s1">);</span>
+        <span class="s1">});</span>
+    <span class="s1">});</span>
+
+    <span class="s0">deleteButton</span><span class="s1">.</span><span class="s0">addEventListener</span><span class="s1">(</span><span class="s2">'click'</span><span class="s1">, </span><span class="s3">function</span><span class="s1">() {</span>
+        <span class="s4">// 发送POST请求到服务器以删除用户</span>
+        <span class="s0">fetch</span><span class="s1">(</span><span class="s2">'/delete_profile'</span><span class="s1">, {</span>
+            <span class="s0">method</span><span class="s1">: </span><span class="s2">'POST'</span><span class="s1">,</span>
+            <span class="s0">headers</span><span class="s1">: {</span>
+                <span class="s2">'Content-Type'</span><span class="s1">: </span><span class="s2">'application/json'</span>
+            <span class="s1">},</span>
+            <span class="s0">body</span><span class="s1">: </span><span class="s0">JSON</span><span class="s1">.</span><span class="s0">stringify</span><span class="s1">({ </span><span class="s0">username</span><span class="s1">: </span><span class="s2">'Blanca' </span><span class="s1">})</span>
+        <span class="s1">})</span>
+        <span class="s1">.</span><span class="s0">then</span><span class="s1">(</span><span class="s0">response </span><span class="s1">=&gt; </span><span class="s0">response</span><span class="s1">.</span><span class="s0">json</span><span class="s1">())</span>
+        <span class="s1">.</span><span class="s0">then</span><span class="s1">(</span><span class="s0">data </span><span class="s1">=&gt; {</span>
+            <span class="s3">if </span><span class="s1">(</span><span class="s0">data</span><span class="s1">.</span><span class="s0">success</span><span class="s1">) {</span>
+                <span class="s0">window</span><span class="s1">.</span><span class="s0">location</span><span class="s1">.</span><span class="s0">href </span><span class="s1">= </span><span class="s2">'/login'</span><span class="s1">; </span><span class="s4">// 删除成功后跳转到登录页</span>
+            <span class="s1">} </span><span class="s3">else </span><span class="s1">{</span>
+                <span class="s0">alert</span><span class="s1">(</span><span class="s0">data</span><span class="s1">.</span><span class="s0">message</span><span class="s1">);</span>
+            <span class="s1">}</span>
+        <span class="s1">});</span>
+    <span class="s1">});</span>
+<span class="s1">});</span>
+</pre>
+</body>
+</html>

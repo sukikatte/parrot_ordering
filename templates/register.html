@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="header">
+            <button class="return-button" onclick="window.location.href='/'">
+                Back to Login
+            </button>
+            <h1 class="register-title">Register</h1>
+        </div>
+        <div class="form-container">
+            <form id="register-form">
+                <label for="role">Identification:</label>
+                <select name="role" id="role" required>
+                    <option value="Customer">Customer</option>
+                    <option value="Cook">Cook</option>
+                    <option value="Administrator">Administrator</option>
+                </select>
+
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <span id="email-error" class="error-message"></span>
+
+                <label for="telephone">Telephone:</label>
+                <input type="text" id="telephone" name="telephone" required>
+                <span id="telephone-error" class="error-message"></span>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="password-error" class="error-message"></span>
+
+                <label for="confirm_password">Verify Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+                <span id="confirm-password-error" class="error-message"></span>
+
+                <div class="action-buttons">
+                    <button class="btn-reg" type="submit">Register</button>
+                    <button type="button" class="btn-cancel" onclick="clearForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script src="/static/js/register.js"></script>
+</body>
+</html>

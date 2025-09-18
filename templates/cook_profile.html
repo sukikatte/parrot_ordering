@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/css/cook_profile.css">
+</head>
+<body>
+    <header>
+        <nav>
+             <ul>
+                 <li><a href="{{ url_for('cook_dashboard') }}">My Menu</a></li>
+                <li><a href="{{ url_for('cook_menu') }}">Today's Menu</a></li>
+                <li><a href="{{ url_for('cook_comments') }}">Customer Comments</a></li>
+                <li><a href="{{ url_for('cook_profile') }}" class="active">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="profile-container">
+        <!-- Sidebar with avatar -->
+        <section class="profile-sidebar">
+            <img id="avatar" src="{{ user.avatar_url or '/static/images/default_avatar.png' }}" alt="Cook Avatar">
+            <button id="change-avatar">Change Avatar</button>
+        </section>
+
+        <!-- Profile details -->
+        <div class="cook-profile-details">
+              <div class="tab-menu">
+                <button class="tab-button active" onclick="openTab(event, 'personal-info')">Personal Information</button>
+                <button class="tab-button" onclick="openTab(event, 'settings')">Settings</button>
+              </div>
+
+                <div id="personal-info" class="tab-content active">
+                <!-- User Information Section -->
+                    <div class="info-block">
+                        <label>User Name:</label>
+                        <input type="text" id="username" value="{{ user.username }}" readonly>
+                        <button id="change-username">Change</button>
+                    </div>
+                    <div class="info-block">
+                        <label>Email:</label>
+                        <input type="email" id="email" value="{{ user.email }}" readonly>
+                        <button id="change-email">Change</button>
+                    </div>
+                    <div class="info-block">
+                        <label>Telephone:</label>
+                        <input type="text" id="telephone" value="{{ user.telephone }}" readonly>
+                        <button id="change-telephone">Change</button>
+                    </div>
+                    <div class="info-block">
+                        <label>Password:</label>
+                        <input type="password" id="password" value="{{ user.password }}" readonly>
+                        <button id="toggle-password">Show</button>
+                        <button id="change-password">Change</button>
+                    </div>
+                    <div class="info-block">
+                        <label>Assigned Category:</label>
+                        <input type="text" id="category" value="{{ cook.category }}" readonly>
+                    </div>
+                    <div class="info-block">
+                        <label>Introduction:</label>
+                        <textarea id="introduction" readonly>{{ user.introduction or '' }}</textarea>
+                        <button id="edit-introduction">Edit</button>
+                    </div>
+                    <!-- Save, Delete and Logout Buttons -->
+                    <div class="action-buttons">
+                        <button class="delete" onclick="deleteProfile()">Delete</button>
+                        <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+                    </div>
+                </div>
+             <div class="settings-section">
+                    <h3>Settings</h3>
+                    <div class="theme-switcher">
+                        <label for="theme">Choose Theme:</label>
+                        <select id="theme" onchange="changeTheme()">
+                            <option value="classic">Classic</option>
+                            <option value="night">Night Mode</option>
+                            <option value="animal">Cute Animals</option>
+                        </select>
+                    </div>
+               </div>
+        </div>
+        </div>
+    </div>
+    <script src="/static/js/cook_profile.js"></script>
+</body>
+</html>

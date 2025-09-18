@@ -1,0 +1,76 @@
+<!-- templates/dish_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ dish.dish_name }} - Details</title>
+    <link rel="stylesheet" href="/static/css/customer_styles.css">
+    <link rel="stylesheet" href="/static/css/dish_styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('customer_dashboard') }}" >Ordering</a></li>
+            <li><a href="{{ url_for('customer_messages') }}">Messages</a></li>
+            <li><a href="{{ url_for('customer_profile') }}" >Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="dish-detail-container">
+    <div class="dish-detail-header">
+        <img src="{{ dish.image_url }}" alt="{{ dish.dish_name }}">
+        <div class="dish-detail-info">
+            <h1>{{ dish.dish_name }}</h1>
+            <p><strong>Category:</strong> {{ dish.category }}</p>
+            <p><strong>Price:</strong> ${{ '%.2f' | format(dish.price | float) }}</p>
+            <p><strong>Description:</strong> {{ dish.description }}</p>
+        </div>
+    </div>
+
+    <div class="customer-reviews">
+        <h2>Customer Reviews</h2>
+        {% if reviews %}
+            {% for review in reviews %}
+                <div class="customer-review-item">
+                    <img src="{{ review.avatar_url }}" alt="{{ review.username }}" class="customer-review-avatar">
+                    <div class="customer-review-content">
+                        <p class="customer-review-username">{{ review.username }}</p>
+                        <p class="customer-review-text">{{ review.comment_text }}</p>
+                        <p class="customer-review-date">{{ review.created_at }}</p>
+                    </div>
+                    {% if review.replies %}
+                        <div class="chef-replies">
+                            <p class="chef-reply-label">Chef Replies:</p>
+                            {% for reply in review.replies %}
+                                <div class="chef-reply-item">
+                                    <img src="{{ reply.cook.avatar_url }}" alt="{{ reply.cook.username }}" class="chef-reply-avatar">
+                                    <div class="chef-reply-content">
+                                        <p class="chef-reply-username">{{ reply.cook.username }}</p>
+                                        <p class="chef-reply-text">{{ reply.reply_text }}</p>
+                                        <p class="chef-reply-date">{{ reply.created_at }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No reviews yet for this dish.</p>
+        {% endif %}
+    </div>
+
+    <div class="back-link">
+        <a href="{{ url_for('customer_dashboard') }}">← Back to Menu</a>
+    </div>
+</div>
+
+<footer>
+    <button onclick="viewCart()">View Cart</button>
+</footer>
+
+<script src="/static/js/customer_dashboard.js"></script>
+</body>
+</html>

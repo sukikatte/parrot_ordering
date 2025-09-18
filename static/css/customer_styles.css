@@ -1,0 +1,1513 @@
+/* static/css/customer_styles.css */
+
+/* 基本样式重置 */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    padding-bottom: 70px; /* 给页面底部留出空间 */
+}
+
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* 平均分配导航项 */
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1; /* 让每个导航项平均分布 */
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* 增加文字大小 */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+/* 菜单容器 */
+.menu-container {
+    padding: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* 菜品网格布局 */
+.dish-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 10px;
+    padding: 10px;
+    width: 100%; /* 确保容器宽度占满页面 */
+}
+
+/* 菜品图片样式 */
+.dish img {
+    width: 100%; /* 图片宽度占满父元素 */
+    height: auto; /* 高度自适应 */
+    border-radius: 4px;
+    object-fit: cover; /* 保证图片不变形 */
+}
+
+/* 在详情页面时，减小图片的大小 */
+.dish-info .dish-image img {
+    width: 100%; /* 图片在详情页变小 */
+    height: auto;
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.66);
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 10px;  /* 菜品之间的间隔 */
+    padding: 10px;
+}
+
+
+.menu-item .name {
+    font-size: 18px; /* 菜品名称文字大小 */
+    font-weight: bold;
+    margin-top: 10px; /* 给名称留点间距 */
+}
+.menu-item {
+  font-size: 18px;
+  color: #333;
+}
+
+.menu-item .description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+/* 菜品介绍区域 */
+.dish-details {
+    flex: 1; /* 菜品介绍区域占据剩余空间 */
+    font-size: 1rem;
+    color: #131111;
+    margin-bottom: 1rem;
+}
+
+/* 菜品名称 */
+.dish h3 {
+    font-size: 1.5rem;
+    color: rgba(15, 98, 181, 0.8);
+    margin: 10px 0;
+}
+
+/* 菜品描述 */
+.dish p {
+    font-size: 1rem;
+    color: #4598ff;
+    margin: 5px 0;
+}
+
+/* 详情页图片 */
+.dish-info .dish-image img {
+    width: 20%; /* 在详情页缩小图片 */
+    height: auto;
+
+}
+
+.dish {
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+}
+
+/* 详情页菜品信息 */
+.dish-info .dish-details {
+    font-size: 1rem;
+    color: #0d68bc;
+    margin-bottom: 1rem;
+}
+
+.dish:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+/* 按钮样式 */
+.dish button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dish button:hover {
+    background-color: #0056b3;
+}
+
+/* 购物车表格样式 */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.58);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+th.night-theme{
+    background-color: gold;
+}
+th.animal-theme{
+    background-color: cornflowerblue;
+}
+td img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* 提交按钮的样式 */
+#submitButton {
+    background-color: #007BFF; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    font-size: 18px; /* 增大字体 */
+    padding: 15px 30px; /* 增加按钮的大小 */
+    border: none; /* 去掉按钮的边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标悬停时显示为手指 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 鼠标悬停时改变按钮的颜色 */
+#submitButton:hover {
+    background-color: #0056b3; /* 深蓝色 */
+}
+
+/* 将按钮固定在页面底部并居中 */
+body {
+    position: relative; /* 确保页面内容可以被定位 */
+    padding-bottom: 70px; /* 给页面底部留出空间 */
+}
+
+form {
+    position: relative; /* 确保表单可以相对于父元素定位 */
+}
+
+/* 成功消息样式 */
+#confirmationMessage {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #28a745;
+}
+/* static/css/customer_styles.css */
+
+/* 将 View Cart 按钮的样式调整为更大且固定位置 */
+footer {
+    position: relative; /* 保证按钮相对于页面定位 */
+}
+
+footer button {
+    background-color: #007BFF; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    font-size: 22px; /* 增大字体 */
+    padding: 15px 40px; /* 增加按钮的大小 */
+    border: none; /* 去掉按钮的边框 */
+    border-radius: 8px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标悬停时显示为手指 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+    position: fixed; /* 固定在页面底部 */
+    bottom: 20px; /* 距离底部20px */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 精确地居中 */
+    z-index: 100; /* 确保按钮在最前面 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加按钮阴影效果 */
+}
+
+/* 鼠标悬停时改变按钮的颜色 */
+footer button:hover {
+    background-color: #0056b3; /* 深蓝色 */
+}
+
+
+/* 弹出框样式 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+/* 响应式布局 */
+@media (max-width: 1200px) {
+    .dish {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dish {
+        flex: 1 1 calc(50% - 20px);
+    }
+    th, td {
+        padding: 8px;
+    }
+    td img {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dish {
+        flex: 1 1 100%;
+    }
+}
+
+/* 个人资料容器 */
+.customer-profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 侧边栏样式 */
+.customer-profile-sidebar {
+    width: 25%;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.customer-profile-sidebar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.customer-profile-sidebar button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.customer-profile-sidebar button:hover {
+    background-color: #0056b3;
+}
+
+/* 详情部分 */
+.customer-profile-details {
+    width: 70%;
+}
+
+/* 选项卡菜单 */
+.tab-menu {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.61);
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    background-color: #fdba23;
+    border: none;
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.tab-button:hover {
+    background-color: #f88032;
+}
+
+.tab-button.active {
+    background-color: #ff6b07;
+}
+
+/* 选项卡内容 */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 信息块 */
+.info-block {
+    margin-bottom: 15px;
+}
+
+.info-block label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.info-block input[type="text"],
+.info-block input[type="email"],
+.info-block input[type="password"],
+.info-block textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.info-block button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.info-block button:hover {
+    background-color: #0056b3;
+}
+
+/* 动作按钮 */
+.action-buttons {
+    margin-top: 20px;
+}
+
+.action-buttons .delete {
+    margin-left: 10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.action-buttons .delete:hover {
+    background-color: #c82333;
+}
+
+.action-buttons .logout-button {
+    margin-left: 10px;
+    background-color: #f8b72b;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.action-buttons .logout-button:hover {
+    background-color: #5a6268;
+}
+
+
+/* 提交按钮的样式 */
+#submitButton {
+    background-color: #007BFF; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    font-size: 18px; /* 增大字体 */
+    padding: 15px 30px; /* 增加按钮的大小 */
+    border: none; /* 去掉按钮的边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标悬停时显示为手指 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 鼠标悬停时改变按钮的颜色 */
+#submitButton:hover {
+    background-color: #0056b3; /* 深蓝色 */
+}
+
+/* 将按钮固定在页面底部并居中 */
+body {
+    position: relative; /* 确保页面内容可以被定位 */
+    padding-bottom: 70px; /* 给页面底部留出空间 */
+}
+
+form {
+    position: relative; /* 确保表单可以相对于父元素定位 */
+}
+
+#submitButton {
+    position: fixed; /* 固定在页面底部 */
+    bottom: 20px; /* 距离底部20px */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 精确地居中 */
+    z-index: 10; /* 保证按钮在最前面 */
+}
+
+
+/* 评论编辑页面外层容器 */
+.add-review-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.68);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.add-review-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 菜品信息区 */
+.dish-info {
+    display: flex;
+    flex-direction: column; /* 每项菜品信息占一行 */
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.dish-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.dish-image img {
+    width: 20%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.dish-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 这里设置为统一间距 */
+    margin-bottom: 10px;
+}
+
+.dish-details h2 {
+   display: flex;
+    flex-direction: column;
+    gap: 10px; /* 这里设置为统一间距 */
+    margin-bottom: 10px;
+}
+
+.dish-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.dish-description image{
+    width: 20%;
+    height: auto;
+}
+
+/* 厨师信息区域 */
+.cook-info {
+    background: rgba(247, 247, 247, 0.64);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+}
+
+.cook-info h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.cook-profile {
+    display: flex;
+    align-items: center;
+}
+
+.cook-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.cook-details p {
+    margin: 0.3rem 0;
+}
+
+/* 评论表单 */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.review-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.review-form textarea {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 1rem;
+}
+
+.submit-btn {
+    width: 120px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    text-align: center;
+    margin-left: 260px;
+}
+
+.submit-btn:hover {
+    background: #218838;
+}
+
+/* 返回链接样式 */
+.back-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .dish-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dish-image {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .dish-details {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cook-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cook-avatar {
+        margin-bottom: 1rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 美化历史订单标题 */
+#orders-history h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 调整订单表格外观，已有的表格样式已设置 */
+#orders-history table {
+    margin-top: 20px;
+}
+
+/* 对订单中菜品列表的样式进行美化 */
+#orders-history ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#orders-history ul li {
+    margin-bottom: 10px;
+    background-color: rgba(249, 250, 251, 0.24);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    position: relative;
+}
+
+/* 让菜品名称与数量更醒目 */
+#orders-history ul li::before {
+    content: "🍴 ";
+    font-size: 1.1rem;
+    margin-right: 5px;
+}
+
+/* 评论标题和文本 */
+#orders-history ul li strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* 评论文本本身更有层次感 */
+.review-text {
+    display: block;
+    margin-top: 5px;
+    font-style: italic;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* 评论链接样式（写评论/编辑评论） */
+#orders-history ul li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+#orders-history ul li a:hover {
+    text-decoration: underline;
+}
+
+/* 使按钮与其它元素有点间距 */
+#orders-history ul li a:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* 适应小屏幕的响应式调整 */
+@media (max-width: 600px) {
+    #orders-history table,
+    #orders-history th,
+    #orders-history td {
+        font-size: 0.9rem;
+    }
+
+    #orders-history ul li {
+        padding: 8px;
+    }
+}
+
+        /* 保留之前的样式即可，或根据需要调整 */
+        .menu-container {
+            padding: 20px;
+        }
+        .chef-section {
+            margin-bottom: 40px;
+        }
+        .chef-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .dish-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin: 20px;
+        }
+        .dish {
+            width: 23%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .dish input[type="number"] {
+            width: 40%;
+            margin-right: 10px;
+            display: inline-block;
+            height: 26px;
+        }
+        .dish button {
+            width: 45%;
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .dish button:hover {
+            background-color: #0056b3;
+        }
+
+body.animal-theme {
+    background-image: url("static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #3253f8;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+
+/* 使每个菜品容器的背景色变为透明 */
+.menu-item.animal-theme {
+    background-color: transparent; /* 将背景颜色设置为透明 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 可保留轻微阴影，保持视觉效果 */
+    text-align: left;
+}
+
+/* 修改菜品标题颜色 */
+.menu-item.animal-theme h3 {
+    color: #003366; /* 深蓝色 */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 修改菜品描述文字颜色 */
+.menu-item.animal-theme .description {
+    color: #666666; /* 深灰色 */
+    font-size: 1rem;
+}
+
+/* 改变按钮的颜色 */
+.menu-item.animal-theme button {
+    background-color: #f88032; /* 动物主题中的橙色按钮 */
+    color: white; /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu-item.animal-theme button:hover {
+    background-color: #4598ff; /* 橙色按钮的悬停效果变成蓝色 */
+}
+
+/* 菜品分类按钮的颜色 */
+#category-buttons button.selected {
+    background-color: #003366; /* 选择按钮的背景颜色为深蓝色 */
+}
+
+#category-buttons button:hover {
+    background-color: #325af8; /* 菜品分类按钮的悬停效果改为橙色 */
+}
+
+/* 修改菜品分类按钮的文字颜色 */
+#category-buttons button {
+    color: white; /* 按钮文字颜色 */
+    background-color: #4598ff; /* 默认的蓝色背景 */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 修改菜品图片的边框颜色 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 菜品图片的橙色边框 */
+}
+
+/* 菜品项的 hover 效果 */
+.menu-item.animal-theme:hover {
+    background-color: rgba(248, 128, 50, 0.1); /* 悬停时的背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 悬停时增加阴影效果 */
+}
+
+/* 修改搜索框按钮的颜色 */
+.search-bar.animal-theme button {
+    background-color: #f88032;
+    color: white;
+}
+
+.search-bar.animal-theme button:hover {
+    background-color: #4598ff; /* 搜索框按钮的悬停效果 */
+}
+
+/* 修改菜单项的颜色 */
+body.animal-theme .menu-list h2 {
+    color: #003366; /* 设置菜单文字的颜色为深蓝色 */
+}
+
+.menu-list article button {
+    background-color: #f88032;
+    color: white;
+}
+
+.menu-list article button:hover {
+    background-color: #4598ff; /* 菜单项按钮悬停时的颜色变化 */
+}
+
+
+
+body.animal-theme {
+    background-image: url("/static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #3253f8;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+
+/* 使每个菜品容器的背景色变为透明 */
+.menu-item.animal-theme {
+    background-color: rgba(255, 255, 255, 0.69);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 可保留轻微阴影，保持视觉效果 */
+    text-align: left;
+}
+
+/* 修改菜品标题颜色 */
+.menu-item.animal-theme h3 {
+    color: #003366; /* 深蓝色 */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 修改菜品描述文字颜色 */
+.menu-item.animal-theme .description {
+    color: #131111; /* 深灰色 */
+    font-size: 1rem;
+}
+
+/* 改变按钮的颜色 */
+.menu-item.animal-theme button {
+    background-color: #f88032; /* 动物主题中的橙色按钮 */
+    color: white; /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu-item.animal-theme button:hover {
+    background-color: #4598ff; /* 橙色按钮的悬停效果变成蓝色 */
+}
+
+/* 菜品分类按钮的颜色 */
+#category-buttons button.selected {
+    background-color: #003366; /* 选择按钮的背景颜色为深蓝色 */
+}
+
+#category-buttons button:hover {
+    background-color: #325af8; /* 菜品分类按钮的悬停效果改为橙色 */
+}
+
+/* 修改菜品分类按钮的文字颜色 */
+#category-buttons button {
+    color: white; /* 按钮文字颜色 */
+    background-color: #4598ff; /* 默认的蓝色背景 */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 修改菜品图片的边框颜色 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 菜品图片的橙色边框 */
+}
+
+/* 菜品项的 hover 效果 */
+.menu-item.animal-theme:hover {
+    background-color: rgba(248, 128, 50, 0.1); /* 悬停时的背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 悬停时增加阴影效果 */
+}
+
+/* 修改搜索框内的颜色 */
+.search-bar.animal-theme {
+    background-color: rgba(255, 255, 255, 0.6); /* 调整为稍微透明的背景 */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 修改搜索框按钮的颜色 */
+.search-bar.animal-theme button {
+    background-color: #f88032;
+    color: white;
+}
+
+.search-bar.animal-theme button:hover {
+    background-color: #4598ff; /* 搜索框按钮的悬停效果 */
+}
+
+/* 修改菜单项的颜色 */
+body.animal-theme .menu-list h2 {
+    color: #003366; /* 设置菜单文字的颜色为深蓝色 */
+}
+
+.menu-list article button {
+    background-color: #f88032;
+    color: white;
+}
+
+.menu-list article button:hover {
+    background-color: #4598ff; /* 菜单项按钮悬停时的颜色变化 */
+}
+
+/* 修改页脚的按钮颜色 */
+footer nav button {
+    background-color: #f88032; /* 页脚按钮的背景颜色 */
+    color: white;
+}
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+
+
+/* Animal theme - Profile container */
+.customer-profile-container.animal-theme {
+    background-color: rgba(255, 255, 255, 0.66); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+
+/* Animal theme - Container items */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgba(255, 255, 255, 0.65); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Animal theme - Button hover effects */
+.menu-item.animal-theme button:hover, .menu-list article.animal-theme button:hover {
+    background-color: #FFD700; /* Yellow on hover */
+}
+
+
+/* 评论容器 */
+.reviews-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reviews-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* 无评论提示 */
+.no-reviews {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+/* 单条评论卡片 */
+.review-card {
+    display: flex;
+    background: rgba(253, 253, 253, 0.45);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.review-image-section {
+    flex: 0 0 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.review-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-info-section {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-dish-name {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.review-text {
+    color:black;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.review-text strong {
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.review-date {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #061b30;
+}
+
+/* 响应式处理 */
+@media (max-width: 600px) {
+    .review-card {
+        flex-direction: column;
+    }
+
+    .review-image-section {
+        width: 100%;
+        height: auto;
+    }
+}

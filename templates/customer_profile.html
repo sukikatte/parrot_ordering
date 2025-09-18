@@ -1,0 +1,155 @@
+<!-- templates/customer_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Profile</title>
+    <link rel="stylesheet" href="/static/css/customer_styles.css">
+    <style>
+        .customer-profile-container{
+            width: 1000px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+
+.theme-switcher {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.theme-switcher select {
+    flex: 1;
+    padding: 10px;
+    background-color: rgba(244, 244, 244, 0.69);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('customer_dashboard') }}">Ordering</a></li>
+                <li><a href="{{ url_for('customer_messages') }}">Messages</a></li>
+                <li><a href="{{ url_for('customer_profile') }}"class="active">Profile</a></li>
+            </ul>
+        </nav>
+</header>
+
+    <div class="customer-profile-container">
+        <!-- Sidebar with avatar -->
+        <div class="customer-profile-sidebar">
+            <img id="avatar" src="{{ user.avatar_url or '/static/images/default_avatar.png' }}" alt="Customer Avatar">
+            <button id="change-avatar" onclick="uploadAvatar('/update_avatar')">Change Avatar</button>
+        </div>
+
+        <!-- Profile details -->
+        <div class="customer-profile-details">
+            <div class="tab-menu">
+                <button class="tab-button active" onclick="openTab(event, 'personal-info')">Personal Information</button>
+                <button class="tab-button" onclick="openTab(event, 'orders-history')">Orders History</button>
+                <button class="tab-button" onclick="openTab(event, 'settings')">Settings</button>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div id="personal-info" class="tab-content active">
+                <div class="info-block">
+                    <label for="username">User Name:</label>
+                    <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+                    <button id="change-username">Change</button>
+                </div>
+                <div class="info-block">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+                    <button id="change-email">Change</button>
+                </div>
+                <div class="info-block">
+                    <label for="telephone">Telephone:</label>
+                    <input type="text" id="telephone" name="telephone" value="{{ user.telephone }}" readonly>
+                    <button id="change-telephone">Change</button>
+                </div>
+                <div class="info-block">
+                    <label for="introduction">Introduction:</label>
+                    <textarea id="introduction" name="introduction" readonly>{{ user.introduction or '' }}</textarea>
+                    <button id="edit-introduction">Edit</button>
+                </div>
+
+                <!-- Password Section -->
+                <div class="info-block">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" value="********" readonly>
+                    <button id="change-password">Change</button>
+                </div>
+
+
+                <!-- Save, Delete and Logout Buttons -->
+                <div class="action-buttons">
+                    <button class="delete" onclick="deleteProfile()">Delete</button>
+                    <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+                </div>
+            </div>
+
+            <!-- Orders History Section -->
+            <div id="orders-history" class="tab-content">
+                {% if orders %}
+                <h2>Your Orders</h2>
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Dishes</th>
+                        <th>Total Price</th>
+                    </tr>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>
+                            <ul>
+                                {% for item in order.order_items %}
+                                <li>
+                                    {{ item.dish_name }} x {{ item.quantity }}
+                                    <!-- Display content related to evaluation -->
+                                    {% if item.reviewed %}
+                                        <br>
+                                        <strong>Your Review:</strong> {{ item.review_text }}<br>
+                                        <a href="{{ url_for('add_review', order_item_id=item.order_item_id) }}">Edit Review</a>
+                                    {% else %}
+                                        <br>
+                                        <a href="{{ url_for('add_review', order_item_id=item.order_item_id) }}">Write Review</a>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>${{ '%.2f' | format(order.total_price) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>You have not placed any orders yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings" class="tab-content">
+                <div class="theme-switcher">
+                    <label for="theme">Choose Theme:</label>
+                    <select id="theme" onchange="changeTheme()">
+                        <option value="classic">Classic</option>
+                        <option value="night">Night Mode</option>
+                        <option value="animal">Cute Animals</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/customer_profile.js"></script>
+
+</body>
+</html>

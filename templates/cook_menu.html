@@ -1,0 +1,112 @@
+<!-- templates/cook_menu.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cook's Today's Menu</title>
+    <link rel="stylesheet" href="/static/css/cook_styles.css">
+</head>
+<body>
+    <!-- Navigation and Header -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('cook_dashboard') }}">My Menu</a></li>
+            <li><a href="{{ url_for('cook_menu') }}" class="active">Today's Menu</a></li>
+            <li><a href="{{ url_for('cook_comments') }}">Customer Comments</a></li>
+            <li><a href="{{ url_for('cook_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Your Menu for Today</h1>
+    </header>
+
+    <!-- Menu List -->
+    <section class="menu-list" id="menu-list">
+        {% if dishes %}
+        {% for dish in dishes %}
+        <div class="dish-item">
+            <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
+            <h3>{{ dish.name }}</h3>
+            <p>Category: {{ dish.category }}</p>
+            <p>Price: ${{ '%.2f' | format(dish.price | float) }}</p>
+            <p>Quantity: {{ dish.quantity }}</p>
+            <div class="dish-details">
+                <button type="button" onclick="toggleDescription(this, {{ dish.dish_id }})">View Description</button>
+            </div>
+            <!-- Dish description section -->
+            <div id="description-{{ dish.dish_id }}" class="description" style="display: none;">
+                <p>{{ dish.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>You have not selected any dishes for today.</p>
+        {% endif %}
+    </section>
+
+
+<script src="/static/js/cook_dashboard.js"></script>
+<script>
+
+window.onload = function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        // Apply saved theme to body and all relevant sections
+        document.body.classList.add(savedTheme + '-theme');
+
+        const sections = ['nav', 'header', '.search-bar', 'footer', '.menu-list', '.admin-profile-container'];
+        sections.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.classList.add(savedTheme + '-theme');
+            }
+        });
+
+        const themeSelector = document.getElementById('theme');
+        if (themeSelector) {
+            themeSelector.value = savedTheme;
+        }
+    }
+};
+
+
+// Switch theme across the page
+function switchTheme(theme) {
+    // Remove all existing themes
+    document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+
+    const elementsToUpdate = [
+        document.body,
+        document.querySelector('nav'),
+        document.querySelector('header'),
+        document.querySelector('.search-bar'),
+        document.querySelector('footer'),
+        document.querySelector('.menu-list'),
+        document.querySelector('.admin-profile-container')
+    ];
+
+    // Add the new theme class
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            element.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+            element.classList.add(theme + '-theme');
+        }
+    });
+
+    // Store the selected theme in localStorage
+    localStorage.setItem('theme', theme);
+}
+
+// Handle theme change from a select dropdown or button
+function changeTheme() {
+    const theme = document.getElementById('theme').value;
+
+    // Apply the new theme globally
+    switchTheme(theme);
+}
+
+</script>
+</body>
+</html>

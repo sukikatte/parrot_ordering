@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="/static/css/customer_message.css">
+</head>
+<body data-customer-id="{{ customer_id }}">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('customer_dashboard') }}">Ordering</a></li>
+                <li><a href="{{ url_for('customer_messages') }}" class="active">Messages</a></li>
+                <li><a href="{{ url_for('customer_profile') }}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li id="messages-tab" class="active">Messages</li>
+                <li id="new-friends-tab">New Friends</li>
+                <li id="add-friends-tab">Add New Friends</li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <!-- Messages -->
+            <div id="messages-list" class="tab-content">
+                <h2>Messages</h2>
+                <div id="messages-container">
+                    <p>Loading messages...</p>
+                </div>
+            </div>
+
+            <!-- Message Details -->
+            <div id="message-details-container" class="tab-content hidden">
+                <div class="message-header">
+                    <button id="back-to-messages">Return</button>
+                    <div class="friend-info">
+                        <h2 id="friend-username"></h2>
+                    </div>
+                </div>
+                <div id="message-history">
+                    <!-- Messages will load dynamically here -->
+                </div>
+                <button id="reply-btn">Reply</button>
+
+                <!-- Reply Section -->
+                <div id="reply-section" class="hidden">
+                    <div class="reply-header">
+                        <button id="close-reply">&larr;</button>
+                        <span id="reply-friend-username"></span>
+                    </div>
+                    <div class="reply-body">
+                        <img src="/static/images/default_avatar.png" alt="Customer Avatar" />
+                        <textarea id="reply-input" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+
+            <!-- New Friends -->
+            <div id="new-friends-list" class="tab-content hidden">
+                <h2>New Friends</h2>
+                <div id="new-friends-container">Loading friend requests...</div>
+            </div>
+
+            <!-- Add New Friends -->
+            <div id="add-friends-list" class="tab-content hidden">
+                <h2>Add New Friends</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-username" placeholder="Search username">
+                    <button id="search-btn">Search</button>
+                </div>
+                <div id="search-result">Start searching for friends...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/customer_message.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Comments</title>
+    <link rel="stylesheet" href="/static/css/cook_styles.css">
+    <style>
+       body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1;
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+.reviews-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reviews-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+
+.no-reviews {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+
+.review-card {
+    display: flex;
+    background: rgba(253, 253, 253, 0.45);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.review-image-section {
+    flex: 0 0 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.review-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-info-section {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-dish-name {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.review-text {
+    color:black;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.review-text strong {
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.review-date {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #061b30;
+}
+
+@media (max-width: 600px) {
+    .review-card {
+        flex-direction: column;
+    }
+
+    .review-image-section {
+        width: 100%;
+        height: auto;
+    }
+}
+
+body.animal-theme {
+    background-image: url("https://gues-songs.oss-cn-beijing.aliyuncs.com/songs/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+/* Animal theme - Profile container */
+.cook-profile-container.animal-theme {
+    background-color: rgba(255, 255, 255, 0.63); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+
+/* Animal theme - Container items */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Animal theme - Button hover effects */
+.menu-item.animal-theme button:hover, .menu-list article.animal-theme button:hover {
+    background-color: #FFD700; /* Yellow on hover */
+}
+body.animal-theme, nav.animal-theme, header.animal-theme, .search-bar.animal-theme {
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* 使主题变化更平滑 */
+}
+
+
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('cook_dashboard') }}">My Menu</a></li>
+        <li><a href="{{ url_for('cook_menu') }}">Today's Menu</a></li>
+        <li><a href="{{ url_for('cook_comments') }}" class="active">Customer Comments</a></li>
+        <li><a href="{{ url_for('cook_profile') }}">Profile</a></li>
+    </ul>
+</nav>
+
+<div class="reviews-container">
+    <h1>Reviews for Your Dishes</h1>
+    {% if reviews %}
+        {% for r in reviews %}
+        <div class="review-card">
+            <div class="review-image-section">
+                <!-- If there is a food image, it is displayed, and if there is not, the default image path is used -->
+                <img src="{{ r.dish_image_url if r.dish_image_url else '/static/images/default_dish.png' }}" alt="{{ r.dish_name }}">
+            </div>
+            <div class="review-info-section">
+                <h3 class="review-dish-name">{{ r.dish_name }}</h3>
+                <p class="review-text">
+                    <strong>{{ r.customer_username }}:</strong> {{ r.comment_text }}
+                </p>
+                <p class="review-date">
+                    <small>Reviewed on: {{ r.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+                </p>
+                <!-- Show a reply -->
+                {% for reply in r.replies %}
+                <div class="reply-card">
+                    <p class="reply-text"><strong>Chef Reply:</strong> {{ reply.reply_text }}</p>
+                    <p class="reply-date"><small>{{ reply.created_at }}</small></p>
+                </div>
+                {% endfor %}
+
+                <!-- Return icon container -->
+                <div class="reply-icon-container" id="reply-icon-container-{{ r.review_id }}">
+                    <i class="reply-icon" data-review-id="{{ r.review_id }}">💬</i>
+                    <span class="chef-reply-label">Chef Reply</span>
+                </div>
+
+                <!-- Reply input field -->
+                <div class="reply-form" id="reply-form-{{ r.review_id }}" style="display: none;">
+                    <textarea class="reply-input" placeholder="Write your reply..."></textarea>
+                    <button class="send-reply-btn" data-review-id="{{ r.review_id }}">Send</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-reviews">No reviews yet.</p>
+    {% endif %}
+</div>
+<script src="/static/js/cook_comments.js"></script>
+<script>
+
+window.onload = function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        // Apply saved theme to body and all relevant sections
+        document.body.classList.add(savedTheme + '-theme');
+
+        const sections = ['nav', 'header', '.search-bar', 'footer', '.menu-list', '.admin-profile-container'];
+        sections.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.classList.add(savedTheme + '-theme');
+            }
+        });
+
+        const themeSelector = document.getElementById('theme');
+        if (themeSelector) {
+            themeSelector.value = savedTheme;
+        }
+    }
+};
+
+
+// Switch theme across the page
+function switchTheme(theme) {
+    // Remove all existing themes
+    document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+
+    const elementsToUpdate = [
+        document.body,
+        document.querySelector('nav'),
+        document.querySelector('header'),
+        document.querySelector('.search-bar'),
+        document.querySelector('footer'),
+        document.querySelector('.menu-list'),
+        document.querySelector('.admin-profile-container')
+    ];
+
+    // Add the new theme class
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            element.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+            element.classList.add(theme + '-theme');
+        }
+    });
+
+    // Store the selected theme in localStorage
+    localStorage.setItem('theme', theme);
+}
+
+// Handle theme change from a select dropdown or button
+function changeTheme() {
+    const theme = document.getElementById('theme').value;
+
+    // Apply the new theme globally
+    switchTheme(theme);
+}
+</script>
+</body>
+</html>

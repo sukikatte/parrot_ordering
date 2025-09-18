@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today's Menu</title>
+  <link rel="stylesheet" href="/static/css/unlog_styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a herf="“{{ url_for('unlog_dashboard') }}” }}">Menu Overview</a></li>
+            <li><a href="{{ url_for('unlog_menu') }}">Today's Menu</a></li>
+            <li><a href="#" onclick="promptLogin('My Profile')">My Profile</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div id="category-buttons">
+            <button onclick="filterMenu('View All')">All Dishes</button>
+            <button onclick="filterMenu('Hot Dishes')">Hot Dishes</button>
+            <button onclick="filterMenu('Vegetarian')">Vegetarian</button>
+            <button onclick="filterMenu('Fast Food')">Fast Food</button>
+            <button onclick="filterMenu('Desserts')">Desserts</button>
+            <button onclick="filterMenu('Beverages')">Beverages</button>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search-box" placeholder="Search by dish name">
+            <button id="search-button">Search</button>
+        </div>
+
+    </header>
+
+    <section class="menu-list" id="menu-list">
+        <!-- Dishes will be dynamically loaded here -->
+    </section>
+
+    <!-- Modal for login prompt -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <p id="loginMessage">Please login to view this content.</p>
+            <button class="register-button" onclick="window.location.href='/'">Go to Login/Registration</button>
+        </div>
+    </div>
+
+    <script src="/static/js/unlog_dashboard.js"></script>
+</body>
+</html>

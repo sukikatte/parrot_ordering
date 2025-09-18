@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cook Dashboard</title>
+    <link rel="stylesheet" href="/static/css/cook_styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('cook_dashboard') }}"class="active">My Menu</a></li>
+            <li><a href="{{ url_for('cook_menu') }}">Today's Menu</a></li>
+            <li><a href="{{ url_for('cook_comments') }}">Customer Comments</a></li>
+            <li><a href="{{ url_for('cook_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>You are responsible for these dishes</h1>
+    </header>
+
+    <!-- Menu selection form -->
+    <form id="dishForm" onsubmit="submitMenu(); return false;">
+    <section class="menu-list" id="menu-list">
+        {% if dishes %}
+            {% for dish in dishes %}
+                <div class="dish-item">
+                    <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
+                    <h3>{{ dish.name }}</h3>
+                    <p>Category: {{ dish.category }}</p>
+                    <p>Price: ${{ '%.2f' | format(dish.price | float) }}</p>
+                    <div class="dish-details">
+                        <label>
+                            Select for Today's Menu
+                            <input type="checkbox" name="dish_ids[]" value="{{ dish.dish_id }}">
+                        </label>
+                        <label>
+                            Quantity:
+                            <input type="number" name="quantities[]" min="0" value="0">
+                        </label>
+                        <!-- Pass dish.dish_id here -->
+                        <button type="button" onclick="toggleDescription(this, {{ dish.dish_id }})">View Description</button>
+                    </div>
+                    <!-- Dish description section -->
+                    <div id="description-{{ dish.dish_id }}" class="description" style="display: none;">
+                        <p>{{ dish.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You have not selected any dishes for today.</p>
+        {% endif %}
+    </section>
+    <button type="submit" id="submitButton">Submit Today's Menu</button>
+</form>
+
+
+
+    <script src="/static/js/cook_dashboard.js"></script>
+</body>
+</html>
+

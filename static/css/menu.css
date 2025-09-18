@@ -1,0 +1,262 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #007bff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* 今日菜单部分样式 */
+#today-menu {
+    background-color: rgba(255, 255, 255, 0.73);
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 10px;  /* 菜品之间的间隔 */
+    padding: 10px;
+}
+
+#today-menu h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.menu-list {
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 10px;  /* 菜品之间的间隔 */
+    padding: 10px;
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.73);
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 10px;  /* 菜品之间的间隔 */
+    padding:10px;
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.menu-item .name {
+    font-size: 18px; /* 菜品名称文字大小 */
+    font-weight: bold;
+    margin-top: 10px; /* 给名称留点间距 */
+}
+.menu-item {
+  margin: 15px 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.menu-item .description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #000000;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+

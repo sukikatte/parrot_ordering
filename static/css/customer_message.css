@@ -1,0 +1,832 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1;
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 18px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+
+/* Sidebar and content container */
+.container {
+    display: flex;
+    margin-top: 60px; /* Avoid overlapping with nav */
+    height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 20%;
+    background-color: rgba(248, 249, 250, 0.47);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 100%;
+    position: relative;
+    margin-top: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Main content styles */
+.main-content {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Tab content visibility */
+.tab-content {
+    display: none;
+    height: 100%;
+}
+
+.tab-content.hidden {
+    display: none !important;
+}
+
+.tab-content:not(.hidden) {
+    display: block !important;
+}
+
+/* Messages list styles */
+.message-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.58);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.message-item:hover {
+    background-color: #f0f8ff;
+}
+
+.message-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.message-content {
+    display: flex;
+    justify-content: space-between; /* Space between text and timestamp */
+    align-items: flex-start;
+    width: 100%; /* Ensure it fills the available space */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 80px); /* Leave space for timestamp */
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+}
+
+.message-text {
+    margin: 5px 0;
+    color: #555;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.timestamp {
+    margin-left: auto; /* Push timestamp to the far right */
+    color: #999;
+    font-size: 0.8em;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Message details styles */
+#message-details-container {
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.message-details-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.message-details-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.message-details-header .friend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-details-header .friend-info .username {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Return button styles */
+#back-to-messages {
+    padding: 8px 16px;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #007bff; /* Blue text, matching other link colors */
+    font-size: 0.9em;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: inline-block; /* Ensure proper padding and dimension */
+    margin-bottom: 10px; /* Spacing from content below */
+}
+
+#back-to-messages:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+    border-color: #0056b3; /* Darker blue border on hover */
+}
+
+#message-history {
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.64);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+#message-history .message-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+#message-history .message-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#message-history .message-item .message-content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(249, 249, 249, 0.53);
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+#message-history .message-item .username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#message-history .message-item .timestamp {
+    align-self: flex-end;
+    font-size: 0.8em;
+    color: #999;
+}
+
+/* Reply button styles */
+#reply-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#reply-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Reply section styles */
+#reply-section {
+    display: none; /* Hidden by default */
+    background-color: rgba(255, 255, 255, 0.67);
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: absolute; /* Position relative to the viewport */
+    z-index: 1000; /* Ensure it stays on top */
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 900px;
+    max-width: 90%;
+}
+
+#reply-section.visible {
+    display: flex;
+    flex-direction: column;
+}
+
+.reply-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reply-header button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.reply-header span {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.reply-body {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reply-body img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#reply-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    width: 100%; /* Fill the container width */
+}
+
+#send-btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Search bar styles */
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Friend list styles */
+.friend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.friend-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.friend-item button {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.friend-item button:hover {
+    background-color: #218838;
+}
+
+/* Loading placeholder styles */
+#messages-container,
+#new-friends-container,
+#search-result {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+
+body.animal-theme {
+    background-image: url("static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #3253f8;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+
+/* 使每个菜品容器的背景色变为透明 */
+.menu-item.animal-theme {
+    background-color: transparent; /* 将背景颜色设置为透明 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 可保留轻微阴影，保持视觉效果 */
+    text-align: left;
+}
+
+/* 修改菜品标题颜色 */
+.menu-item.animal-theme h3 {
+    color: #003366; /* 深蓝色 */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 修改菜品描述文字颜色 */
+.menu-item.animal-theme .description {
+    color: #666666; /* 深灰色 */
+    font-size: 1rem;
+}
+
+/* 改变按钮的颜色 */
+.menu-item.animal-theme button {
+    background-color: #f88032; /* 动物主题中的橙色按钮 */
+    color: white; /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu-item.animal-theme button:hover {
+    background-color: #4598ff; /* 橙色按钮的悬停效果变成蓝色 */
+}
+
+/* 菜品分类按钮的颜色 */
+#category-buttons button.selected {
+    background-color: #003366; /* 选择按钮的背景颜色为深蓝色 */
+}
+
+#category-buttons button:hover {
+    background-color: #325af8; /* 菜品分类按钮的悬停效果改为橙色 */
+}
+
+/* 修改菜品分类按钮的文字颜色 */
+#category-buttons button {
+    color: white; /* 按钮文字颜色 */
+    background-color: #4598ff; /* 默认的蓝色背景 */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 修改菜品图片的边框颜色 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 菜品图片的橙色边框 */
+}
+
+/* 菜品项的 hover 效果 */
+.menu-item.animal-theme:hover {
+    background-color: rgba(248, 128, 50, 0.1); /* 悬停时的背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 悬停时增加阴影效果 */
+}
+
+/* 修改搜索框内的颜色 */
+.search-bar.animal-theme {
+    background-color: rgba(255, 255, 255, 0.6); /* 调整为稍微透明的背景 */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 修改搜索框按钮的颜色 */
+.search-bar.animal-theme button {
+    background-color: #f88032;
+    color: white;
+}
+
+.search-bar.animal-theme button:hover {
+    background-color: #4598ff; /* 搜索框按钮的悬停效果 */
+}
+
+/* 修改菜单项的颜色 */
+body.animal-theme .menu-list h2 {
+    color: #003366; /* 设置菜单文字的颜色为深蓝色 */
+}
+
+/* 修改菜单项的每个文章容器 */
+.menu-list article {
+    background-color: transparent; /* 使菜单项的背景透明 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 边框保留轻微的阴影 */
+    width: calc(33.333% - 20px);
+    margin: 10px;
+    text-align: center;
+}
+
+.menu-list article button {
+    background-color: #f88032;
+    color: white;
+}
+
+.menu-list article button:hover {
+    background-color: #4598ff; /* 菜单项按钮悬停时的颜色变化 */
+}
+
+/* 修改页脚的按钮颜色 */
+footer nav button {
+    background-color: #f88032; /* 页脚按钮的背景颜色 */
+    color: white;
+}
+
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+
+

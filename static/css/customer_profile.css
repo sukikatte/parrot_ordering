@@ -1,0 +1,531 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* 平均分配导航项 */
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1; /* 让每个导航项平均分布 */
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* 增加文字大小 */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* 顾客个人资料容器 */
+.customer-profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.74);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.theme-switcher {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.theme-switcher select {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+
+/* 侧边栏样式 */
+.customer-profile-sidebar {
+    flex: 1 1 200px;
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+
+/* 头像和按钮布局 */
+.customer-profile-sidebar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px; /* 头像下方间距 */
+}
+
+/* 改变头像按钮 */
+.customer-profile-sidebar button.change-avatar,
+.customer-profile-sidebar button.change-theme {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* 按钮宽度占满容器 */
+    text-align: center;
+}
+
+.customer-profile-sidebar button:hover {
+    background-color: #0056b3;
+}
+
+/* 主题选择下拉框 */
+.customer-profile-sidebar select.theme-select {
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* 透明背景容器 */
+.customer-profile-container {
+    background-color: rgba(255, 255, 255, 0.7); /* 设置透明背景 */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+
+/* 增加过渡效果 */
+.customer-profile-sidebar button,
+.customer-profile-sidebar select.theme-select {
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.customer-profile-sidebar button:hover,
+.customer-profile-sidebar select.theme-select:hover {
+    background-color: #0056b3; /* 选择框和按钮悬停时变色 */
+    border: 1px solid #0056b3;
+}
+
+/* 详细信息样式 */
+.customer-profile-details {
+    flex: 2 1 600px;
+    padding: 20px;
+}
+
+.customer-profile-details .tab-menu {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.customer-profile-details .tab-button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.customer-profile-details .tab-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.customer-profile-details .info-block {
+    margin-bottom: 20px;
+}
+
+.customer-profile-details .info-block label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.customer-profile-details .info-block input,
+.customer-profile-details .info-block textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.customer-profile-details .info-block input[readonly],
+.customer-profile-details .info-block textarea[readonly] {
+    background-color: #e9ecef;
+}
+
+.customer-profile-details .info-block button {
+    margin-top: 5px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.customer-profile-details .info-block button:hover {
+    background-color: #0056b3;
+}
+
+/* 密码显示切换按钮 */
+.customer-profile-details .password-toggle {
+    position: relative;
+}
+
+.customer-profile-details .password-toggle input {
+    width: calc(100% - 60px);
+    display: inline-block;
+}
+
+.customer-profile-details .password-toggle button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.customer-profile-details .password-toggle button:hover {
+    background-color: #5a6268;
+}
+
+/* Action buttons container */
+.customer-profile-details .action-buttons {
+    display: flex; /* 设置为水平排列 */
+    justify-content: center; /* 水平居中 */
+    gap: 15px; /* 按钮之间的间距 */
+    margin-top: 20px;
+}
+
+/* Delete button */
+.customer-profile-details .action-buttons .delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.customer-profile-details .action-buttons .delete:hover {
+    background-color: #c82333;
+}
+
+/* Log Out button */
+.customer-profile-details .action-buttons .logout-button {
+    background-color: #ffc107;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block; /* 保证与按钮一致 */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.customer-profile-details .action-buttons .logout-button:hover {
+    background-color: #e0a800;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+    display: block;
+}
+
+
+
+body.animal-theme {
+    background-image: url("static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+/* Animal theme - Profile container */
+.customer-profile-container.animal-theme {
+    background-color: rgba(255, 255, 255, 0.66); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+
+/* Animal theme - Container items */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgba(255, 255, 255, 0.65); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Animal theme - Button hover effects */
+.menu-item.animal-theme button:hover, .menu-list article.animal-theme button:hover {
+    background-color: #FFD700; /* Yellow on hover */
+}
+/* Animal theme - Profile container */
+.admin-profile-container.animal-theme {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+
+/* Animal theme - Container items */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+}/* Animal theme - Container items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(255, 255, 255, 0.65); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+.theme-switcher {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.theme-switcher select {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+

@@ -1,0 +1,36 @@
+<!-- templates/customer_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Today's Menu</title>
+    <link rel="stylesheet" href="/static/css/customer_styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('customer_dashboard') }}" class="active">Ordering</a></li>
+            <li><a href="{{ url_for('customer_messages') }}">Messages</a></li>
+            <li><a href="{{ url_for('customer_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="menu-container" id="menu-container">
+    <!-- Dynamically populated by JS via AJAX -->
+</div>
+
+
+<footer>
+    <button onclick="viewCart()">View Cart</button>
+</footer>
+
+<script src="/static/js/customer_dashboard.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    loadDishesAjax(); // After the page loads, the data is loaded via AJAX
+});
+</script>
+</body>
+</html>

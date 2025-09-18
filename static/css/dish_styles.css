@@ -1,0 +1,416 @@
+/* 基本容器样式 */
+.dish-detail-container {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.42);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* 每个菜品项 */
+.dish-item {
+   background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+.dish-detail-container img{
+    max-width: 30%;
+}
+.dish-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dish-item img {
+    max-width: 10%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 1rem; /* 图片与文字之间的间距 */
+}
+
+/* 菜品名称 */
+.dish-item h2 {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+
+/* 菜品描述 */
+.dish-item p {
+    font-size: 0.95rem;
+    color: #4598ff;
+    margin-bottom: 1rem;
+}
+
+/* 菜品价格 */
+.dish-item .price {
+    font-size: 1.1rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* 顾客评价区域 */
+.customer-reviews {
+    margin-top: 2rem;
+}
+
+.customer-reviews h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* 单个顾客评价项 */
+.customer-review-item {
+    background: #f9fafb;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    transition: box-shadow 0.3s;
+}
+
+.customer-review-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 顾客头像 */
+.customer-review-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* 顾客评价内容 */
+.customer-review-content {
+    flex: 1;
+}
+
+.customer-review-username {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.customer-review-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.customer-review-date {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Chef Replies Section */
+.chef-replies {
+    margin-top: 1rem; /* Space between customer review and chef replies */
+    padding-left: 20px; /* Slightly indent replies */
+}
+
+.chef-reply-label {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Single Chef Reply Item */
+.chef-reply-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9f9f9; /* Light background for differentiation */
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+/* Chef Avatar in Reply */
+.chef-reply-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Chef Reply Content */
+.chef-reply-content {
+    flex: 1;
+}
+
+.chef-reply-username {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+.chef-reply-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.chef-reply-date {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+
+/* 返回链接样式 */
+.back-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.back-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+footer button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #0056b3;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .dish-detail-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dish-detail-container {
+        grid-template-columns: repeat(2, 1fr); /* 屏幕小于768px时，每行2列 */
+    }
+
+    .dish-item {
+        margin-bottom: 1.5rem; /* 菜品之间的间距 */
+    }
+}
+
+@media (max-width: 480px) {
+    .dish-detail-container {
+        grid-template-columns: 1fr; /* 屏幕小于480px时，每行1列 */
+    }
+
+    .dish-item {
+        margin-bottom: 1rem; /* 菜品之间的间距 */
+    }
+
+    .dish-item h2 {
+        font-size: 1.2rem;
+    }
+
+    .dish-item p {
+        font-size: 0.85rem;
+    }
+
+    .dish-item .price {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+
+

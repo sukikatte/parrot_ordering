@@ -1,0 +1,817 @@
+/* 基本样式重置 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* 平均分配导航项 */
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1; /* 让每个导航项平均分布 */
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* 增加文字大小 */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+
+/* Page Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.42);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 页眉样式 */
+header {
+    background-color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: rgb(0, 0, 0);
+}
+
+/* 今日菜单部分样式 */
+#today-menu {
+    background-color: rgba(255, 255, 255, 0.73);
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 20px;  /* 菜品之间的间隔 */
+    padding: 20px;
+}
+
+#today-menu h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.menu-list {
+    display: grid;  /* 使用Grid布局 */
+    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    gap: 20px;  /* 菜品之间的间隔 */
+    padding: 20px;
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    min-height: 300px;  /* 增加最小高度，避免内容被挤压 */
+    display: flex;
+    flex-direction: column; /* 使用垂直排列，避免内容重叠 */
+    justify-content: flex-start; /* 确保内容从顶部开始排列 */
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.menu-item .name {
+    font-size: 18px; /* 菜品名称文字大小 */
+    font-weight: bold;
+    margin-top: 10px; /* 给名称留点间距 */
+}
+.menu-item {
+  margin: 15px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.menu-item .description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.menu-item button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.menu-item button:hover {
+    background-color: #0056b3;
+}
+
+/* dish-details 和 description 保持一致的间距 */
+.dish-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 这里设置为统一间距 */
+    margin-bottom: 10px;
+}
+
+.dish-details label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.quantity-container {
+    margin-top: 10px; /* 可以根据需要调整间距 */
+}
+
+/* dish-item 样式 */
+.dish-item {
+    background-color: rgba(255, 255, 255, 0.41);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.dish-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* 提交按钮的样式 */
+#submitButton {
+background-color: #007BFF; /* 蓝色背景 */
+color: white; /* 白色文字 */
+font-size: 18px; /* 增大字体 */
+padding: 15px 30px; /* 增加按钮的大小 */
+border: none; /* 去掉按钮的边框 */
+border-radius: 5px; /* 圆角边框 */
+cursor: pointer; /* 鼠标悬停时显示为手指 */
+transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 鼠标悬停时改变按钮的颜色 */
+#submitButton:hover {
+background-color: #0056b3; /* 深蓝色 */
+}
+
+/* 将按钮固定在页面底部并居中 */
+body {
+position: relative; /* 确保页面内容可以被定位 */
+padding-bottom: 70px; /* 给页面底部留出空间 */
+}
+
+form {
+position: relative; /* 确保表单可以相对于父元素定位 */
+}
+
+#submitButton {
+position: fixed; /* 固定在页面底部 */
+bottom: 20px; /* 距离底部20px */
+left: 50%; /* 水平居中 */
+transform: translateX(-50%); /* 精确地居中 */
+z-index: 10; /* 保证按钮在最前面 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dish-item {
+        width: 100%; /* 在小屏幕上占满宽度 */
+    }
+
+    .menu-list {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* 每行显示1个元素 */
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+body.animal-theme {
+    background-image: url("static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+header.animal-theme h1 {
+    margin: 0;
+    color: rgb(69, 152, 255);
+}
+
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+
+/* 动物主题 */
+header.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.66);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #3253f8;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+
+/* 使每个菜品容器的背景色变为透明 */
+.menu-item.animal-theme {
+    background-color: transparent; /* 将背景颜色设置为透明 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 可保留轻微阴影，保持视觉效果 */
+    text-align: left;
+}
+
+/* 修改菜品标题颜色 */
+.menu-item.animal-theme h3 {
+    color: #003366; /* 深蓝色 */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 修改菜品描述文字颜色 */
+.menu-item.animal-theme .description {
+    color: #666666; /* 深灰色 */
+    font-size: 1rem;
+}
+
+/* 改变按钮的颜色 */
+.menu-item.animal-theme button {
+    background-color: #f88032; /* 动物主题中的橙色按钮 */
+    color: white; /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu-item.animal-theme button:hover {
+    background-color: #4598ff; /* 橙色按钮的悬停效果变成蓝色 */
+}
+
+/* 菜品分类按钮的颜色 */
+#category-buttons button.selected {
+    background-color: #003366; /* 选择按钮的背景颜色为深蓝色 */
+}
+
+#category-buttons button:hover {
+    background-color: #325af8; /* 菜品分类按钮的悬停效果改为橙色 */
+}
+
+/* 修改菜品分类按钮的文字颜色 */
+#category-buttons button {
+    color: white; /* 按钮文字颜色 */
+    background-color: #4598ff; /* 默认的蓝色背景 */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 修改菜品图片的边框颜色 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 菜品图片的橙色边框 */
+}
+
+/* 菜品项的 hover 效果 */
+.menu-item.animal-theme:hover {
+    background-color: rgba(248, 128, 50, 0.1); /* 悬停时的背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 悬停时增加阴影效果 */
+}
+
+/* 修改搜索框内的颜色 */
+.search-bar.animal-theme {
+    background-color: rgba(255, 255, 255, 0.6); /* 调整为稍微透明的背景 */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 修改搜索框按钮的颜色 */
+.search-bar.animal-theme button {
+    background-color: #f88032;
+    color: white;
+}
+
+.search-bar.animal-theme button:hover {
+    background-color: #4598ff; /* 搜索框按钮的悬停效果 */
+}
+
+/* 修改菜单项的颜色 */
+body.animal-theme .menu-list h2 {
+    color: #003366; /* 设置菜单文字的颜色为深蓝色 */
+}
+
+/* 修改菜单项的每个文章容器 */
+.menu-list article {
+    background-color: transparent; /* 使菜单项的背景透明 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 边框保留轻微的阴影 */
+    width: calc(33.333% - 20px);
+    margin: 10px;
+    text-align: center;
+}
+
+.menu-list article button {
+    background-color: #f88032;
+    color: white;
+}
+
+.menu-list article button:hover {
+    background-color: #4598ff; /* 菜单项按钮悬停时的颜色变化 */
+}
+
+/* 修改页脚的按钮颜色 */
+footer nav button {
+    background-color: #f88032; /* 页脚按钮的背景颜色 */
+    color: white;
+}
+
+/* Chef Reply Card - Adjusted for integration and clear differentiation */
+.chef-replies-section {
+    margin-top: 1rem;  /* Adds spacing between the customer review and the chef replies */
+}
+
+.chef-reply-card {
+    display: flex;
+    background: #f9f9f9; /* Lighter background for differentiation */
+    border-radius: 8px;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border-left: 5px solid #ccc; /* Visual cue that this is a reply */
+}
+
+.chef-reply-image-section {
+    flex: 0 0 50px; /* Smaller image section for chef's avatar */
+    height: 50px;
+    overflow: hidden;
+    padding-left: 20px; /* Indents the chef avatar to the right */
+}
+
+.chef-reply-image-section img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Circular avatar */
+    object-fit: cover;
+}
+
+.chef-reply-info-section {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chef-reply-username {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.1rem;
+}
+
+.chef-reply-text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #666;
+}
+
+.chef-reply-date {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.1rem;
+}
+
+@media (max-width: 600px) {
+    .chef-reply-card {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chef-reply-image-section {
+        padding-left: 0;
+    }
+}
+
+/* 回复按钮样式 */
+.reply-icon-container {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.reply-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.reply-icon:hover {
+    color: #0056b3;
+}
+
+.chef-reply-label {
+    font-weight: bold;
+    color: #007bff; /* 调整为主题蓝色 */
+    font-size: 0.85rem; /* 适当的字体大小 */
+    margin-left: 5px; /* 在图标和文字之间添加间隔 */
+}
+
+/* 回复输入框容器 */
+.reply-form {
+    display: none; /* 默认隐藏 */
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 输入框样式 */
+.reply-input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* 发送按钮样式 */
+.send-reply-btn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.send-reply-btn:hover {
+    background-color: #218838;
+}
+
+/* 回复卡片样式 */
+.reply-card {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fdfdfd;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.reply-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.reply-card .reply-date {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #888;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+header.night-theme h1 {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+/* Header Section */
+header.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(25, 25, 25, 0.9);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+    transition: transform 0.3s;
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+
