@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Menu</title>
+    <link rel="stylesheet" href="/static/css/unlog_styles.css">
+    <style>
+        /* Styles for the dish grid */
+         .dish-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* Align items to the start */
+            margin: 20px; /* Margin around the grid */
+        }
+
+        .dish {
+            width: 23%; /* Four items per row */
+            margin-bottom: 20px; /* Space below each dish */
+            border: 1px solid #ccc; /* Optional: border for dishes */
+            padding: 10px; /* Padding inside each dish */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for dishes */
+            text-align: center; /* Center align text */
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Styles for buttons */
+        button {
+            background-color: #007bff; /* Blue background for buttons */
+            color: white; /* White text */
+            padding: 10px 15px; /* Larger button size */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 10px; /* Space above buttons */
+        }
+
+        button:hover {
+            background-color: #0056b3;/* Darker blue on hover */
+        }
+
+        /* Adjust input and button layout */
+        .dish input[type="number"] {
+            width: 20%; /* Adjust width of quantity input */
+            margin-right: 10px; /* Space between input and button */
+            display: inline-block;
+            height: 26px;
+        }
+
+        .dish button {
+            width: 45%; /* Adjust width of "Add to Cart" button */
+            display: inline-block;
+        }
+
+        .view-description-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 16px; /* Increase the font size if necessary */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 1.2em;
+            position: relative;
+        }
+        
+        .register-button {
+            background-color: #fdba23;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        
+        .register-button:hover {
+            background-color: #f88032;
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('unlog_dashboard') }}">Menu Overview</a></li>
+            <li><a href="{{ url_for('unlog_menu') }}">Today's Menu</a></li>
+            <li><a href="#" onclick="promptLogin('My Profile')">My Profile</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Today's Menu</h1>
+        <div id="category-buttons">
+            <button onclick="filterMenu('View All')">All Dishes</button>
+            <button onclick="filterMenu('Hot Dishes')">Hot Dishes</button>
+            <button onclick="filterMenu('Vegetarian')">Vegetarian</button>
+            <button onclick="filterMenu('Fast Food')">Fast Food</button>
+            <button onclick="filterMenu('Desserts')">Desserts</button>
+            <button onclick="filterMenu('Beverages')">Beverages</button>
+        </div>
+    </header>
+
+    <div class="dish-grid">
+        {% if dishes %}
+        {% for dish in dishes %}
+            <div class="dish">
+                <img src="{{ dish.image_url }}" alt="{{ dish.name }}" style="max-width: 100%; height: auto;">
+                <h3>{{ dish.name }}</h3>
+                <p>Category: {{ dish.category }}</p>
+                <p>Price: ${{ '%.2f' | format(dish.price | float) }}</p>
+                <p>Available: {{ dish.quantity }}</p>
+                {% if dish.quantity > 0 %}
+                    <input type="number" id="quantity_{{ dish.dish_id }}" value="1" min="1" max="{{ dish.quantity }}">
+                    <button onclick="addToCart('{{ dish.dish_id }}')">Add to Cart</button>
+                {% else %}
+                    <p style="color: red; font-weight: bold;">Out of Stock</p>
+                {% endif %}
+                <button onclick="viewDescription('{{ dish.description }}')">View Description</button>
+            </div>
+        {% endfor %}
+        {% else %}
+        <p>No dishes are available for today.</p>
+        {% endif %}
+    </div>
+
+    <!-- Modal for login prompt -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <p id="loginMessage">Please login to view this content.</p>
+            <button class="register-button" onclick="window.location.href='/'">Go to Login/Registration</button>
+        </div>
+    </div>
+
+    <script src="/static/js/unlog_dashboard.js"></script>
+    <script>
+        // Function to filter the menu based on category
+        function filterMenu(category) {
+            const allDishes = document.querySelectorAll('.dish');
+            allDishes.forEach(dish => {
+                if (category === 'View All' || dish.querySelector('p').innerText.includes(category)) {
+                    dish.style.display = 'block';
+                } else {
+                    dish.style.display = 'none';
+                }
+            });
+        }
+
+
+        // Function to prompt login (with custom messages)
+        function promptLogin(action) {
+            var modal = document.getElementById("loginModal");
+            var loginMessage = document.getElementById("loginMessage");
+
+            if (action === 'viewDescription') {
+                loginMessage.innerText =  "Please login to view the description \n 𓅰 𓅰 𓅰 𓅷 𓅂 𓅂 𓅪 𓅌 𓅌";
+            } else if (action === 'startOrdering') {
+                loginMessage.innerText = "Please login to start ordering \n  𓅰 𓅰 𓅰 𓅷 𓅂 𓅂 𓅪 𓅌 𓅌";
+            } else if (action === 'My Profile') {
+                loginMessage.innerText = "Please login to view your account details \n  𓅰 𓅰 𓅰 𓅷 𓅂 𓅂 𓅪 𓅌 𓅌";
+            } else if (action === 'todaysMenuLogin') {
+                loginMessage.innerText = "Please login to view today's menu \n  𓅰 𓅰 𓅰 𓅷 𓅂 𓅂 𓅪 𓅌 𓅌";
+            }
+
+            modal.style.display = "flex"; // Change display to flex to align at center
+        }
+
+        // Close the modal when the user clicks on <span> (x)
+        document.getElementById("closeLoginModal").onclick = function() {
+            const modal = document.getElementById("loginModal");
+            modal.style.display = "none"; // Close the modal
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            const modal = document.getElementById("loginModal");
+            if (event.target == modal) {
+                modal.style.display = "none"; // Close the modal
+            }
+        }
+
+        // Add event listeners for buttons
+        function addToCart(dishId) {
+            promptLogin('startOrdering'); // Show login prompt
+        }
+
+        function viewDescription(description) {
+            promptLogin('viewDescription'); // Show login prompt
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+
+

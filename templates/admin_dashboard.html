@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/admin_styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}" class="active">Menu Overview</a></li>
+            <li><a href="{{ url_for('admin_menu') }}">Today's Menu</a></li>
+            <li><a href="{{ url_for('admin_accounts_page') }}">Accounts</a></li>
+            <li><a href="{{ url_for('admin_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Menu</h1>
+
+        <!-- Category filter buttons -->
+        <div id="category-buttons">
+            <button onclick="filterMenu('View All')">All Dishes</button>
+            <button onclick="filterMenu('Hot Dishes')">Hot Dishes</button>
+            <button onclick="filterMenu('Vegetarian')">Vegetarian</button>
+            <button onclick="filterMenu('Fast Food')">Fast Food</button>
+            <button onclick="filterMenu('Desserts')">Desserts</button>
+            <button onclick="filterMenu('Beverages')">Beverages</button>
+        </div>
+
+        <!-- Create dish button -->
+        <button onclick="createNewDish()">+ Create a new dish</button>
+
+        <!-- Dish creation form -->
+        <div id="create-dish-form" style="display: none;">
+            <h2>Create a New Dish</h2>
+            <form id="dishForm" enctype="multipart/form-data"> <!-- Add enctype for file upload -->
+                <label for="dish_name">Dish Name:</label>
+                <input type="text" id="dish_name" name="dish_name" required>
+
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required> <!-- File input -->
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Hot Dishes">Hot Dishes</option>
+                    <option value="Fast Food">Fast Food</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Desserts">Desserts</option>
+                    <option value="Beverages">Beverages</option>
+                </select>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="submit">Add Dish</button>
+                <button type="button" onclick="toggleDishForm()">Cancel</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="search-box" placeholder="Search by dish name">
+        <button id="search-button">Search</button>
+    </div>
+
+    <section class="menu-list" id="menu-list">
+        <!-- Dishes will be dynamically loaded here -->
+        <div class="menu-item">
+            <img src="path/to/image.jpg" alt="Dish Image">
+            <h3>Dish Name</h3>
+            <p>Category</p>
+            <p>$Price</p>
+            <p>Description</p>
+        </div>
+        <div class="menu-item">
+            <img src="path/to/image.jpg" alt="Dish Image">
+            <h3>Dish Name</h3>
+            <p>Category</p>
+            <p>$Price</p>
+            <p>Description</p>
+        </div>
+        <div class="menu-item">
+            <img src="path/to/image.jpg" alt="Dish Image">
+            <h3>Dish Name</h3>
+            <p>Category</p>
+            <p>$Price</p>
+            <p>Description</p>
+        </div>
+        <div class="menu-item">
+            <img src="path/to/image.jpg" alt="Dish Image">
+            <h3>Dish Name</h3>
+            <p>Category</p>
+            <p>$Price</p>
+            <p>Description</p>
+        </div>
+    </section>
+
+    <script src="/static/js/admin_dashboard.js"></script>
+</body>
+</html>

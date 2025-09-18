@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit Review</title>
+    <link rel="stylesheet" href="/static/css/customer_styles.css">
+    <style>
+        /* Default Classic Theme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .review-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.56);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Night Mode */
+        body.night-mode {
+            background-color: #1a1a1a;
+            color: #ddd;
+        }
+
+        body.night-mode .review-container {
+            background-color: rgba(255, 255, 255, 0.58);
+            color: #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animal Theme */
+        body.animal-theme {
+            background-image: url("https://gues-songs.oss-cn-beijing.aliyuncs.com/songs/bg01.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        body.animal-theme .review-container {
+            background-color: rgba(255, 255, 255, 0.35);
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Flex layout for dish info */
+        .dish-info {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .dish-image {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .dish-image img {
+            align-items: center;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .dish-details {
+            flex: 2;
+        }
+
+        .cook-info {
+            margin-top: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #007BFF;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Back to Profile link */
+        .back-link {
+            margin-top: 20px;
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="review-container">
+    <h1>Add/Edit Review</h1>
+
+    <div class="dish-info">
+        <div class="dish-image">
+            <img src="{{ order_item.dish.image_url if order_item.dish.image_url else '/static/images/default_dish.png' }}" alt="{{ order_item.dish.dish_name }}">
+        </div>
+        <div class="dish-details">
+            <h2>{{ order_item.dish.dish_name }}</h2>
+            <p class="dish-description">{{ order_item.dish.description }}</p>
+
+            <div class="cook-info">
+                <h3>Cook Information</h3>
+                <div class="cook-profile">
+                    {% if order_item.cook.user.avatar_url %}
+                        <img class="cook-avatar" src="{{ order_item.cook.user.avatar_url }}" alt="Cook Avatar">
+                    {% else %}
+                        <img class="cook-avatar" src="/static/images/default_avatar.png" alt="Cook Avatar">
+                    {% endif %}
+                    <div class="cook-details">
+                        <p><strong>Cook:</strong> {{ order_item.cook.user.username }}</p>
+                        <p><strong>Specialty:</strong> {{ order_item.cook.category if order_item.cook.category else 'Unknown' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" class="review-form">
+        <label for="comment_text">Your Review:</label><br>
+        <textarea id="comment_text" name="comment_text" rows="5" cols="50" placeholder="Write your thoughts...">{{ existing_review.comment_text if existing_review else '' }}</textarea><br>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="back-link">
+        <a href="{{ url_for('customer_profile') }}">Back to Profile</a>
+    </div>
+</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        // Function to apply the selected theme
+        function applyStoredTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                switchTheme(storedTheme);
+            }
+        }
+
+        // Switch theme across the page
+        function switchTheme(theme) {
+            document.body.classList.remove('animal-theme', 'dark-theme', 'parrot-theme', 'classic-theme');
+            document.body.classList.add(theme + '-theme');
+        }
+
+        applyStoredTheme();
+    });
+
+</script>
+
+</body>
+</html>

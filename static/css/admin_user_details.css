@@ -1,0 +1,556 @@
+/* 全局样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #007bff;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* 平均分配导航项 */
+    align-items: center;
+}
+
+nav ul li {
+    flex: 1; /* 让每个导航项平均分布 */
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* 增加文字大小 */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+/* 页面容器样式 */
+.profile-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* 返回按钮 */
+#return-button {
+    margin: 20px 0 10px 0;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start; /* 将按钮靠左对齐 */
+}
+
+#return-button:hover {
+    background-color: #0056b3;
+}
+
+/* 头像样式 */
+.avatar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+#change-avatar {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#change-avatar:hover {
+    background-color: #0056b3;
+}
+
+/* 用户详细信息样式 */
+.info {
+    width: 100%;
+}
+
+.info p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.info label {
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.info input,
+.info textarea {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.info button {
+    width: 15%;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.info button:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    resize: none;
+    height: 60px;
+}
+
+/* 分类分配行样式 */
+.assign-category {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.assign-category .label-category {
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.assign-category .content-category {
+    display: flex;
+    align-items: center;
+    width: 80%; /* 内容区域与输入框对齐 */
+}
+
+.assign-category .category-value {
+    width: 60%;
+    text-align: left; /* 与输入框左端对齐 */
+}
+
+
+
+.assign-category select {
+    width: 20%; /* 与输入框右端对齐 */
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 36px;
+}
+
+.assign-category button {
+    width: 15%; /* 与 Change 按钮宽度一致 */
+    margin-left: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.assign-category button:hover {
+    background-color: #0056b3;
+}
+
+/* Delete button */
+.action-buttons .delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .delete:hover {
+    background-color: #c82333;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+}
+
+/*动物主题
+
+ */
+body.animal-theme {
+    background-image: url("static/images/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+
+/* 动物主题 */
+header.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.66);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #f88032;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 菜品容器底色变为半透明色 */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 更明显的阴影 */
+}
+
+/* 菜品按钮变为深蓝色 */
+.menu-item.animal-theme button, .menu-list article.animal-theme button {
+    background-color: #003366; /* 深蓝色 */
+    color: white; /* 文字为白色 */
+}
+
+.menu-item.animal-theme button:hover, .menu-list article.animal-theme button:hover {
+    background-color: #FFD700; /* 按钮悬停时变为黄色 */
+}
+
+/* 描述详情框背景变为浅蓝色 */
+.description.animal-theme {
+    background-color: rgba(173, 216, 230, 0.8); /* 浅蓝色 */
+    border: 1px solid #ADD8E6; /* 浅蓝色边框 */
+    color: #003366; /* 文字为深蓝色 */
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+
+
+/* Dark Theme (Night Mode) */
+body.night-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+}
+
+nav.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+}
+
+nav.night-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.night-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.night-theme ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.night-theme ul li a:hover {
+    border-bottom: 3px solid rgb(255, 0, 255); /* Neon pink effect */
+    color: #ff00ff; /* Neon pink hover color */
+    transform: translateY(-3px);
+    background-color: rgba(44, 44, 44, 0.8); /* Dark hover background */
+}
+
+nav.night-theme ul li a.active {
+    color: #00c4cc;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(0, 196, 204); /* Cyan active state */
+}
+
+nav.night-theme ul li a.active:hover {
+    background-color: rgba(44, 44, 44, 0.8);
+    border-bottom: 3px solid rgb(0, 196, 204);
+    color: #00c4cc;
+}
+
+/* Header Section */
+header.night-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(25, 25, 25, 0.9);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-bar.night-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.search-bar.night-theme input[type="text"] {
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.search-bar.night-theme button {
+    padding: 10px 20px;
+    background-color: #00c4cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink hover effect */
+}
+
+/* Menu Section */
+body.night-theme .menu-list h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+}
+
+/* Menu Items */
+.menu-item.night-theme, .menu-list article.night-theme {
+    background-color: rgba(33, 33, 33, 0.8); /* Dark, semi-transparent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More intense shadow */
+}
+
+.menu-item.night-theme:hover, .menu-list article.night-theme:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Menu Item Buttons */
+.menu-item.night-theme button, .menu-list article.night-theme button {
+    background-color: #00c4cc; /* Cyan buttons */
+    color: white;
+}
+
+.menu-item.night-theme button:hover, .menu-list article.night-theme button:hover {
+    background-color: #ff00ff; /* Neon pink button hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Description Section */
+.description.night-theme {
+    background-color: rgba(50, 50, 50, 0.9); /* Darker description background */
+    border: 1px solid #00c4cc; /* Cyan border */
+    color: #e0e0e0; /* Light text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+
+body.night-theme {
+    font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+}
+
+/* Category Buttons */
+#category-buttons button {
+    background-color: #00c4cc; /* Cyan */
+    color: white;
+    font-weight: bold;
+}
+
+#category-buttons button:hover {
+    background-color: #ff00ff; /* Neon pink hover */
+    transform: translateY(-2px); /* Small hover effect */
+}
+
+#category-buttons button.selected {
+    background-color: #00c4cc; /* Selected state */
+}
+
+/* Add hover effect for the image in menu items */
+.menu-item.night-theme img {
+    border-radius: 8px;
+    border: 3px solid #00c4cc; /* Cyan border */
+}
+
+.menu-item.night-theme img:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Cyan glowing shadow */
+}
+

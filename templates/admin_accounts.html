@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Accounts</title>
+    <link rel="stylesheet" href="/static/css/admin_accounts.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('admin_menu') }}">Today's Menu</a></li>
+            <li><a href="{{ url_for('admin_accounts_page') }}" class="active">Accounts</a></li>
+            <li><a href="{{ url_for('admin_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="filter-section">
+        <select id="role-filter">
+            <option value="">All Roles</option>
+            <option value="Customer">Customer</option>
+            <option value="Cook">Cook</option>
+            <option value="Administrator">Administrator</option>
+        </select>
+        <input type="text" id="search-box" placeholder="Search by username or email">
+        <button id="search-button">Search</button>
+        <button id="clear-button">Clear</button>
+    </div>
+
+    <div id="user-list" class="user-list">
+        <!-- Users will be dynamically loaded here -->
+        <p>Loading users...</p>
+    </div>
+
+    <script src="/static/js/admin_accounts.js?v=1.0"></script>
+</body>
+</html>

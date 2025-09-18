@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator Daily Menu</title>
+    <link rel="stylesheet" href="/static/css/admin_styles.css">
+    <style>
+        /* Styles for the dish grid */
+         .dish-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* Align items to the start */
+            margin: 20px; /* Margin around the grid */
+        }
+
+        .dish {
+            width: 23%; /* Four items per row */
+            margin-bottom: 20px; /* Space below each dish */
+            border: 1px solid #ccc; /* Optional: border for dishes */
+            padding: 10px; /* Padding inside each dish */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for dishes */
+            text-align: center; /* Center align text */
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Styles for buttons */
+        button {
+            background-color: #007bff; /* Blue background for buttons */
+            color: white; /* White text */
+            padding: 10px 15px; /* Larger button size */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 10px; /* Space above buttons */
+        }
+
+        button:hover {
+            background-color: #0056b3;/* Darker blue on hover */
+        }
+
+        /* Adjust input and button layout */
+        .dish input[type="number"] {
+            width: 20%; /* Adjust width of quantity input */
+            margin-right: 10px; /* Space between input and button */
+            display: inline-block;
+            height: 26px;
+        }
+
+        .dish button {
+            width: 45%; /* Adjust width of "Add to Cart" button */
+            display: inline-block;
+        }
+
+        .view-description-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 16px; /* Increase the font size if necessary */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        .register-button {
+            background-color: #fdba23;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background-color: #f88032;
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+    .menu-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* Ensures four items per row */
+    gap: 20px;  /* Space between items */
+    justify-items: start; /* Align items to the left */
+    padding: 20px;
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;  /* Ensures padding and border are included in the width */
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.menu-item h3 {
+    margin-top: 10px;
+}
+
+.menu-item p {
+    margin: 5px 0;
+}
+
+.menu-item button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.menu-item button:hover {
+    background-color: darkred;
+}
+        /*动物主题*/
+
+body.animal-theme {
+    background-image: url("https://gues-songs.oss-cn-beijing.aliyuncs.com/songs/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+
+/* 动物主题 */
+header.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.66);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar.animal-theme input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar.animal-theme button {
+    padding: 10px 20px;
+    background-color: #4598ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar.animal-theme button:hover {
+      background-color: #f88032;
+}
+
+
+/* 使Menu文字变为深蓝色 */
+body.animal-theme .menu-list h2 {
+    color: #003366;
+}
+
+#category-buttons button {
+    background-color: #4598ff;
+    color: white; /* 文字为白色 */
+}
+
+#category-buttons button.selected {
+     background-color: #003366;
+}
+
+/* 菜品容器底色变为半透明色 */
+.menu-item.animal-theme, .menu-list article.animal-theme {
+    background-color: rgb(255, 208, 110); /* 半透明白色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 更明显的阴影 */
+}
+
+/* 菜品按钮变为深蓝色 */
+.menu-item.animal-theme button, .menu-list article.animal-theme button {
+    background-color: #003366; /* 深蓝色 */
+    color: white; /* 文字为白色 */
+}
+
+.menu-item.animal-theme button:hover, .menu-list article.animal-theme button:hover {
+    background-color: #FFD700; /* 按钮悬停时变为黄色 */
+}
+
+/* 描述详情框背景变为浅蓝色 */
+.description.animal-theme {
+    background-color: rgba(173, 216, 230, 0.8); /* 浅蓝色 */
+    border: 1px solid #ADD8E6; /* 浅蓝色边框 */
+    color: #003366; /* 文字为深蓝色 */
+}
+
+/* 在菜单项上加入动物主题的效果 */
+.menu-item.animal-theme img {
+    border-radius: 4px;
+    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+}
+
+/* 菜品分类按钮 hover 效果 */
+#category-buttons button:hover {
+    background-color: #003366;
+}
+
+/* 设置每个主题相关元素的变化效果 */
+body.animal-theme, nav.animal-theme, header.animal-theme, .search-bar.animal-theme {
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* 使主题变化更平滑 */
+}
+
+    </style>
+</head>
+<body>
+   <nav>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('admin_menu') }}" class="active">Today's Menu</a></li>
+            <li><a href="{{ url_for('admin_accounts_page') }}">Accounts</a></li>
+            <li><a href="{{ url_for('admin_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Today's Menu</h1>
+    </header>
+
+    <div class="menu-container">
+        {% if dishes %}
+            {% for dish in dishes %}
+                <div class="menu-item">
+                    <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
+                    <h3>{{ dish.name }}</h3>
+                    <p>Category: {{ dish.category }}</p>
+                    <p>Price: ${{ '%.2f' | format(dish.price | float) }}</p>
+                    <p>Description: {{ dish.description }}</p>
+                    <p>Quantity: {{ dish.quantity }}</p>
+                    <p>Cook: {{ dish.cook_name }}</p>
+                    <!-- 删除按钮 -->
+                    <form action="{{ url_for('admin_delete_menu_item', menu_id=dish.menu_id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this menu item?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No dishes are available for today.</p>
+        {% endif %}
+    </div>
+
+    <script src="/static/js/admin_daily_menu.js"></script>
+<script>
+
+    window.onload = function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        // Apply saved theme to body and all relevant sections
+        document.body.classList.add(savedTheme + '-theme');
+
+        const sections = ['nav', 'header', '.search-bar', 'footer', '.menu-list', '.admin-profile-container'];
+        sections.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.classList.add(savedTheme + '-theme');
+            }
+        });
+
+        const themeSelector = document.getElementById('theme');
+        if (themeSelector) {
+            themeSelector.value = savedTheme;
+        }
+    }
+};
+
+
+// Switch theme across the page
+function switchTheme(theme) {
+    // Remove all existing themes
+    document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+
+    const elementsToUpdate = [
+        document.body,
+        document.querySelector('nav'),
+        document.querySelector('header'),
+        document.querySelector('.search-bar'),
+        document.querySelector('footer'),
+        document.querySelector('.menu-list'),
+        document.querySelector('.admin-profile-container')
+    ];
+
+    // Add the new theme class
+    elementsToUpdate.forEach(element => {
+        if (element) {
+            element.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+            element.classList.add(theme + '-theme');
+        }
+    });
+
+    // Store the selected theme in localStorage
+    localStorage.setItem('theme', theme);
+}
+
+// Handle theme change from a select dropdown or button
+function changeTheme() {
+    const theme = document.getElementById('theme').value;
+
+    // Apply the new theme globally
+    switchTheme(theme);
+}
+
+
+</script>
+</body>
+</html>

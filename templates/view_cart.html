@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Shopping Cart</title>
+    <link rel="stylesheet" href="/static/css/customer_styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: #007bff;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav ul li {
+            flex: 1;
+        }
+
+        nav ul li a {
+            display: block;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        /* Page Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.47);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Success Message */
+        #confirmationMessage {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.62);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .success-container {
+            background-color: white;
+            text-align: center;
+            padding: 40px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-message {
+            font-size: 2rem;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .success-subtext {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Centered Button and Total Price */
+        .fixed-bottom {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+
+        .fixed-bottom p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+body.animal-theme {
+    background-image: url("https://gues-songs.oss-cn-beijing.aliyuncs.com/songs/bg01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+nav.animal-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 128, 50, 0.4);
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+}
+
+nav.animal-theme ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+nav.animal-theme ul li {
+    flex: 1;
+    margin: 0;
+}
+
+nav.animal-theme ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav.animal-theme ul li a:hover {
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #4598ff;
+    transform: translateY(-2px);
+    background-color: rgba(248, 128, 50, 0.4);
+}
+
+nav.animal-theme ul li a.active {
+    color: #0d77f4;
+    background-color: transparent;
+    border-bottom: 3px solid rgb(253, 186, 35);
+}
+
+nav.animal-theme ul li a.active:hover {
+    background-color: rgba(248, 128, 50, 0.4);
+    border-bottom: 3px solid rgb(253, 186, 35);
+    color: #0d77f4;
+}
+
+        h1.animal-theme {
+            color: #003366;
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+
+        table.animal-theme {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        table.animal-theme th, table.animal-theme td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        table.animal-theme th {
+            background-color: rgba(173, 216, 230, 0.5);
+        }
+
+        button.animal-theme {
+            background-color: #003366;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button.animal-theme:hover {
+            background-color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('customer_dashboard') }}" class="active">Ordering</a></li>
+            <li><a href="{{ url_for('customer_messages') }}">Messages</a></li>
+            <li><a href="{{ url_for('customer_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<h1>Your Shopping Cart</h1>
+{% if cart_items %}
+<table>
+    <tr>
+        <th>Dish Image</th>
+        <th>Dish Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+        <td><img src="{{ item.dish.image_url }}" alt="{{ item.dish.dish_name }}" style="width:100px;height:auto;"></td>
+        <td>{{ item.dish.dish_name }}</td>
+        <td>
+            <input type="number" value="{{ item.quantity }}" min="1" onchange="updateCartItem({{ item.cart_item_id }}, this.value)">
+        </td>
+        <td>${{ '%.2f' | format(item.dish.price | float) }}</td>
+        <td>${{ '%.2f' | format(item.dish.price | float * item.quantity) }}</td>
+        <td>
+            <button onclick="removeFromCart({{ item.cart_item_id }})">Remove</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<p>Your shopping cart is empty.</p>
+{% endif %}
+
+<!-- Success Message -->
+<div id="confirmationMessage" class="success-container">
+    <div class="success-message">Your order has been successfully submitted!</div>
+    <div class="success-subtext">Please return to the homepage to submit a new order.</div>
+</div>
+
+<div class="fixed-bottom">
+    <p>Total Price: ${{ '%.2f' | format(total_price) }}</p>
+    <button onclick="submitOrder()">Submit Order</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to apply the selected theme
+        function applyStoredTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                switchTheme(storedTheme);
+            }
+        }
+
+        // Switch theme across the page
+        function switchTheme(theme) {
+            document.body.classList.remove('animal-theme', 'dark-theme', 'parrot-theme', 'classic-theme');
+            document.body.classList.add(theme + '-theme');
+        }
+
+        applyStoredTheme();
+    });
+
+    function updateCartItem(cartItemId, quantity) {
+        fetch('/update_cart_item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cart_item_id: cartItemId, quantity: parseInt(quantity) })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error updating cart item:', error);
+        });
+    }
+
+    function removeFromCart(cartItemId) {
+        fetch('/remove_from_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cart_item_id: cartItemId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error removing item:', error);
+        });
+    }
+
+    function submitOrder() {
+        fetch('/submit_order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+
+    .then(response => response.json())
+    .then(data => {
+        console.log('Order submitted:', data);
+        if (data.success) {
+            document.getElementById('confirmationMessage').style.display = 'block';
+            document.querySelector('table').style.display = 'none';
+        } else {
+            alert('Error submitting order: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting order:', error);
+    });
+}
+
+
+</script>
+
+</body>
+</html>

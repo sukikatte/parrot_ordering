@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="/static/css/admin_user_details.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('admin_menu') }}">Today's Menu</a></li>
+            <li><a href="{{ url_for('admin_accounts_page') }}" class="active">Accounts</a></li>
+            <li><a href="{{ url_for('admin_profile') }}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <button id="return-button">Return</button>
+
+    <div class="profile-container">
+        <div class="avatar">
+            <img id="avatar" src="{{ user.avatar_url or '/static/images/default_avatar.png' }}" alt="Avatar">
+            <button id="change-avatar">Change Image</button>
+        </div>
+        <div class="info">
+            <p>
+                <label for="username">User Name:</label>
+                <input id="username" type="text" value="{{ user.username }}" readonly>
+                <button class="change-button" data-field-id="username">Change</button>
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input id="email" type="email" value="{{ user.email }}" readonly>
+                <span class="error-message" id="email-error"></span>
+                <button class="change-button" data-field-id="email">Change</button>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input id="password" type="text" value="{{ user.password }}" readonly>
+                <span class="error-message" id="password-error"></span>
+                <button class="change-button" data-field-id="password">Change</button>
+            </p>
+            <p>
+                <label for="telephone">Telephone:</label>
+                <input id="telephone" type="text" value="{{ user.telephone }}" readonly>
+                <span class="error-message" id="telephone-error"></span>
+                <button class="change-button" data-field-id="telephone">Change</button>
+            </p>
+
+            {% if cook %}
+            <div class="assign-category">
+                <label class="label-category">Current Category:</label>
+                <div class="content-category">
+                    <span class="category-value" id="current-category">{{ cook.category or 'Not Assigned' }}</span>
+                    <select id="category-select" name="category">
+                        <option value="" disabled selected>Select a category</option>
+                        {% for category in categories %}
+                        <option value="{{ category }}" {% if cook.category == category %}selected{% endif %}>{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="button" id="assign-category-button">Assign</button>
+                </div>
+            </div>
+            {% endif %}
+
+            <p>
+                <label for="introduction">Introduction:</label>
+                <textarea id="introduction" readonly>{{ user.introduction or '' }}</textarea>
+                <button class="change-button" data-field-id="introduction">Change</button>
+            </p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="delete">Delete</button>
+            <button class="ban" id="ban-button">Ban</button>
+        </div>
+
+
+    </div>
+    <script src="/static/js/admin_user_details.js"></script>
+</body>
+</html>
