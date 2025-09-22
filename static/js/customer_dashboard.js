@@ -29,8 +29,8 @@ function loadDishesAjax() {
                     dishItem.className = 'dish';
 
                     dishItem.innerHTML = `
-                        <img src="${dish.image_url}" alt="${dish.name}">
-                        <h3>${dish.name}</h3>
+                        <img src="${dish.image_url}" alt="${dish.dish_name}">
+                        <h3>${dish.dish_name}</h3>
                         <p>Category: ${dish.category}</p>
                         <p>Price: $${dish.price}</p>
                         <p>Available: ${dish.quantity}</p>

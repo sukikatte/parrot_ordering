@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
 // 加载所有菜品列表
 function loadDishes() {
-    fetch('/cook_dashboard')
+    fetch('/api/cook_dashboard')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -20,21 +20,21 @@ function loadDishes() {
                 const dishItem = document.createElement('article');
                 dishItem.className = 'menu-item';
                 dishItem.innerHTML = `  
-                    <img src="${dish.image_url}" alt="${dish.name}" />  
-                    <h3>${dish.name}</h3>  
+                    <img src="${dish.image_url}" alt="${dish.dish_name}" />  
+                    <h3>${dish.dish_name}</h3>  
                     <p>Category: ${dish.category}</p>  
                     <p>Price: $${dish.price}</p>  
                     <div class="dish-details">  
                         <label>  
                             Select for Today's Menu  
-                            <input type="checkbox" name="dish_ids[]" value="${dish.id}">  
+                            <input type="checkbox" name="dish_ids[]" value="${dish.dish_id}">  
                         </label>  
                         <label>  
                             Quantity:  
                             <input type="number" name="quantities[]" min="0" value="0">  
                         </label>  
-                        <button type="button" onclick="toggleDescription(this, ${dish.id})">View Description</button>
-                        <div id="description-${dish.id}" class="description" style="display: none;">
+                        <button type="button" onclick="toggleDescription(this, ${dish.dish_id})">View Description</button>
+                        <div id="description-${dish.dish_id}" class="description" style="display: none;">
                             <p>${dish.description}</p>
                         </div>
                     </div>
@@ -118,13 +118,13 @@ function loadTodayMenu() {
                     const dishItem = document.createElement('div');
                     dishItem.className = 'dish-item';
                     dishItem.innerHTML = `
-                        <img src="${dish.image_url}" alt="${dish.name}" />
-                        <h3>${dish.name}</h3>
+                        <img src="${dish.image_url}" alt="${dish.dish_name}" />
+                        <h3>${dish.dish_name}</h3>
                         <p>Category: ${dish.category}</p>
                         <p>Price: $${dish.price}</p>
                         <label>Quantity: ${dish.quantity}</label>
-                        <button type="button" onclick="toggleDescription(this, ${dish.id})">View Description</button>
-                        <div id="description-${dish.id}" class="description" style="display: none;">
+                        <button type="button" onclick="toggleDescription(this, ${dish.dish_id})">View Description</button>
+                        <div id="description-${dish.dish_id}" class="description" style="display: none;">
                             <p>${dish.description}</p>
                         </div>
                     `;

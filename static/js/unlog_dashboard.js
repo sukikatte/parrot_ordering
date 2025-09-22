@@ -24,8 +24,8 @@ function displayMenu(dishes) {
         const dishItem = document.createElement('div');
         dishItem.className = 'menu-item';
         dishItem.innerHTML = `    
-            <img src="${dish.image_url}" alt="${dish.name}" />  
-            <h3>${dish.name}</h3>  
+            <img src="${dish.image_url}" alt="${dish.dish_name}" />  
+            <h3>${dish.dish_name}</h3>  
             <p>Category: ${dish.category}</p>  
             <p>Price: $${dish.price}</p>  
             <button onclick="promptLogin('viewDescription')">View Description</button>  

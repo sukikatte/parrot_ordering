@@ -511,7 +511,7 @@ def api_customer_menu():
             cook_dishes_map[cook] = []
         cook_dishes_map[cook].append({
             'dish_id': dish.dish_id,
-            'name': dish.dish_name,
+            'dish_name': dish.dish_name,
             'image_url': dish.image_url,
             'category': dish.category,
             'price': dish.price,
@@ -1155,6 +1155,52 @@ def cook_dashboard():
     dishes = Dish.query.filter_by(category=cook.category).all()
     return render_template('cook_dashboard.html', dishes=dishes)
 
+@app.route('/api/cook_dashboard', methods=['GET'])
+def api_cook_dashboard():
+    if 'user' not in session or session['user']['role'] != 'Cook':
+        return jsonify({"message": "Unauthorized"}), 403
+
+    cook = Cook.query.filter_by(user_id=session['user']['user_id']).first()
+    if not cook:
+        return jsonify({"message": "Cook profile not found"}), 404
+
+    dishes = Dish.query.filter_by(category=cook.category).all()
+    return jsonify([{
+        'dish_id': dish.dish_id,
+        'dish_name': dish.dish_name,
+        'image_url': dish.image_url,
+        'category': dish.category,
+        'price': dish.price,
+        'description': dish.description
+    } for dish in dishes])
+
+
+@app.route('/api/cook_menu', methods=['GET'])
+def api_cook_menu():
+    if 'user' not in session or session['user']['role'] != 'Cook':
+        return jsonify({"message": "Unauthorized"}), 403
+
+    cook = Cook.query.filter_by(user_id=session['user']['user_id']).first()
+    if not cook:
+        return jsonify({"message": "Cook profile not found"}), 404
+
+    today = date.today()
+    menus = Menu.query.filter_by(
+        cook_id=cook.cook_id,
+        date=today
+    ).all()
+
+    dishes_with_quantities = [{
+        'dish_id': menu_item.dish.dish_id,
+        'dish_name': menu_item.dish.dish_name,
+        'image_url': menu_item.dish.image_url,
+        'category': menu_item.dish.category,
+        'price': menu_item.dish.price,
+        'description': menu_item.dish.description,
+        'quantity': menu_item.quantity
+    } for menu_item in menus]
+
+    return jsonify(dishes_with_quantities)
 
 @app.route('/cook_menu', methods=['GET'])
 def cook_menu():
@@ -1181,7 +1227,7 @@ def cook_menu():
 
     dishes_with_quantities = [{
         'dish_id': menu_item.dish.dish_id,
-        'name': menu_item.dish.dish_name,
+        'dish_name': menu_item.dish.dish_name,
         'image_url': menu_item.dish.image_url,
         'category': menu_item.dish.category,
         'price': menu_item.dish.price,
@@ -1529,8 +1575,8 @@ def update_dish(dish_id):
 def get_menu():
     dishes = Dish.query.all()
     return jsonify([{
-        'id': dish.dish_id,
-        'name': dish.dish_name,
+        'dish_id': dish.dish_id,
+        'dish_name': dish.dish_name,
         'image_url': dish.image_url,
         'category': dish.category,
         'price': dish.price,

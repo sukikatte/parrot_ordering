@@ -26,15 +26,15 @@ function displayMenu(dishes) {
         const dishItem = document.createElement('div');
         dishItem.className = 'menu-item';
         dishItem.innerHTML = `    
-            <img src="${dish.image_url}" alt="${dish.name}" />  
-            <h3>${dish.name}</h3>  
+            <img src="${dish.image_url}" alt="${dish.dish_name}" />  
+            <h3>${dish.dish_name}</h3>  
             <p>Category: ${dish.category}</p>  
             <p>Price: $${dish.price}</p>  
-            <button onclick="toggleDescription(${dish.id})">View Description</button>  
-            <div id="description-${dish.id}" class="description" style="display: none;">
+            <button onclick="toggleDescription(${dish.dish_id})">View Description</button>  
+            <div id="description-${dish.dish_id}" class="description" style="display: none;">
                 <p>${dish.description}</p>
             </div>
-            <button onclick="deleteDish(${dish.id})">Delete</button>  
+            <button onclick="deleteDish(${dish.dish_id})">Delete</button>  
         `;
         menuList.appendChild(dishItem);
     });
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function searchDishes(query) {
     // Filter dishes based on the search query
     const filteredDishes = allDishes.filter(dish =>
-        dish.name.toLowerCase().includes(query.toLowerCase())
+        dish.dish_name.toLowerCase().includes(query.toLowerCase())
     );
     displayMenu(filteredDishes); // Display filtered dishes
 }
