@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
             loadDishes();  // Load all dishes
-            loadTodayMenu();  // Load today's menu if needed
+            // loadTodayMenu();  // 不再需要，因为cook_menu.html直接显示后端数据
             document.getElementById('dishForm').onsubmit = handleDishFormSubmit; // Set form submit handler
         });
 // 加载所有菜品列表
@@ -17,7 +17,7 @@ function loadDishes() {
             const menuList = document.getElementById('menu-list');
             menuList.innerHTML = ''; // 清空当前菜单
             dishes.forEach(dish => {
-                const dishItem = document.createElement('article');
+                const dishItem = document.createElement('div');
                 dishItem.className = 'menu-item';
                 dishItem.innerHTML = `  
                     <img src="${dish.image_url}" alt="${dish.dish_name}" />  
@@ -62,14 +62,14 @@ function toggleDescription(button, dishId) {
 // 处理表单提交，将选中的菜品和数量提交到服务器
 function submitMenu() {
     const formData = new FormData();
-    const dishItems = document.querySelectorAll('.dish-item');
+    const dishItems = document.querySelectorAll('.menu-item');
 
     dishItems.forEach(dishItem => {
         const checkbox = dishItem.querySelector('input[name="dish_ids[]"]');
         const quantityInput = dishItem.querySelector('input[name="quantities[]"]');
 
-        if (checkbox.checked) {
-            const quantity = quantityInput.value;
+        if (checkbox && checkbox.checked) {
+            const quantity = quantityInput ? quantityInput.value : 0;
             if (quantity > 0) {
                 formData.append('dish_ids[]', checkbox.value);
                 formData.append('quantities[]', quantity);
@@ -92,8 +92,8 @@ function submitMenu() {
         })
         .then(data => {
             alert(data.message);
-            // Optionally reload the page or update the UI
-            location.reload();
+            // 跳转到Today's Menu页面查看提交的菜品
+            window.location.href = '/cook_menu';
         })
         .catch(error => {
             console.error('Error:', error);

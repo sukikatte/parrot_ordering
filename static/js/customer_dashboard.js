@@ -13,6 +13,18 @@ function loadDishesAjax() {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
+            if (data.length === 0) {
+                // 如果没有菜品，显示提示信息
+                const noMenuMessage = document.createElement('div');
+                noMenuMessage.className = 'no-menu-message';
+                noMenuMessage.innerHTML = `
+                    <h2>今日暂无菜品</h2>
+                    <p>厨师们还没有上传今日菜单，请稍后再来查看～</p>
+                `;
+                container.appendChild(noMenuMessage);
+                return;
+            }
+
             data.forEach(chefGroup => {
                 const section = document.createElement('div');
                 section.className = 'chef-section';

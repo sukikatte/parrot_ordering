@@ -80,57 +80,109 @@ header h1 {
 .menu-list {
     display: grid;  /* 使用Grid布局 */
     grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
-    gap: 20px;  /* 菜品之间的间隔 */
-    padding: 20px;
+    gap: 25px;  /* 增加菜品之间的间隔 */
+    padding: 30px 40px; /* 增加内边距：上下30px，左右40px */
+    margin: 0 auto; /* 居中显示 */
+    max-width: 1400px; /* 限制最大宽度 */
+    align-items: start; /* 确保所有item从顶部对齐，不受其他item高度影响 */
 }
 
 .menu-item {
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: left;
-    min-height: 300px;  /* 增加最小高度，避免内容被挤压 */
+    min-height: 420px; /* 增加最小高度，为description预留空间 */
     display: flex;
     flex-direction: column; /* 使用垂直排列，避免内容重叠 */
     justify-content: flex-start; /* 确保内容从顶部开始排列 */
+    align-self: start; /* 确保每个item独立对齐 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease; /* 添加过渡动画 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
 }
 
-.menu-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
+.menu-item:hover {
+    transform: translateY(-5px); /* 悬停时向上移动 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
 }
 
-.menu-item .name {
-    font-size: 18px; /* 菜品名称文字大小 */
+/* 确保所有菜品图片都是正方形 */
+.menu-list img,
+.menu-item img,
+.dish-item img {
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 12px !important;
+    object-fit: cover !important;
+    margin-bottom: 15px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.menu-item img:hover {
+    transform: scale(1.05); /* 图片悬停时放大 */
+}
+
+.menu-item h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 15px 0 10px 0;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.menu-item p {
+    font-size: 0.95rem;
+    color: #5a6c7d;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.menu-item .price {
+    font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 10px; /* 给名称留点间距 */
-}
-.menu-item {
-  margin: 15px 0;
-  font-size: 18px;
-  color: #333;
+    color: #e74c3c;
+    margin: 10px 0;
+    text-align: center;
 }
 
-.menu-item .description {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
+.description {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    flex-shrink: 0; /* 防止description被压缩 */
+    max-height: 200px; /* 限制最大高度 */
+    overflow-y: auto; /* 如果内容过多，显示滚动条 */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.5;
 }
 
 .menu-item button {
     margin-top: 15px;
-    padding: 8px 16px;
-    background-color: #007bff;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .menu-item button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
 }
 
 /* dish-details 和 description 保持一致的间距 */
@@ -159,27 +211,117 @@ header h1 {
     text-align: left;
 }
 
-.dish-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
+/* 未选择菜品的提示信息样式 */
+.no-dishes-message {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* 提交按钮的样式 */
-#submitButton {
-background-color: #007BFF; /* 蓝色背景 */
-color: white; /* 白色文字 */
-font-size: 18px; /* 增大字体 */
-padding: 15px 30px; /* 增加按钮的大小 */
-border: none; /* 去掉按钮的边框 */
-border-radius: 5px; /* 圆角边框 */
-cursor: pointer; /* 鼠标悬停时显示为手指 */
+.no-dishes-message h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.no-dishes-message p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.go-to-menu-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.go-to-menu-btn:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    text-decoration: none;
+    color: white;
+}
+
+.dish-item img {
+    width: 100%;
+    height: 200px !important; /* 强制设置为正方形高度 */
+    border-radius: 12px !important;
+    object-fit: cover !important; /* 保持图片比例 */
+}
+
+/* 响应式布局优化 */
+@media (max-width: 1200px) {
+    .menu-list {
+        grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+        gap: 20px;
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-list {
+        grid-template-columns: repeat(2, 1fr); /* 2列布局 */
+        gap: 15px;
+        padding: 20px 15px;
+    }
+    
+    .menu-item {
+        min-height: 380px;
+        padding: 15px;
+    }
+    
+    .menu-item img {
+        height: 200px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-list {
+        grid-template-columns: 1fr; /* 单列布局 */
+        gap: 15px;
+        padding: 15px 10px;
+    }
+    
+    .menu-item {
+        min-height: 350px;
+        padding: 12px;
+    }
+    
+    .menu-item img {
+        height: 180px !important;
+    }
+}
 transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 
-/* 鼠标悬停时改变按钮的颜色 */
+/* Submit按钮悬停效果 */
 #submitButton:hover {
-background-color: #0056b3; /* 深蓝色 */
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 12px 35px rgba(40, 167, 69, 0.6), 0 0 30px rgba(40, 167, 69, 0.4);
+}
+
+#submitButton:active {
+    transform: translateX(-50%) translateY(-1px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
 }
 
 /* 将按钮固定在页面底部并居中 */
@@ -193,11 +335,29 @@ position: relative; /* 确保表单可以相对于父元素定位 */
 }
 
 #submitButton {
-position: fixed; /* 固定在页面底部 */
-bottom: 20px; /* 距离底部20px */
-left: 50%; /* 水平居中 */
-transform: translateX(-50%); /* 精确地居中 */
-z-index: 10; /* 保证按钮在最前面 */
+    position: fixed; /* 固定在页面底部 */
+    bottom: 30px; /* 距离底部30px */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 精确地居中 */
+    z-index: 10; /* 保证按钮在最前面 */
+    
+    /* 增强按钮样式 */
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 18px 35px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 200px;
+    
+    /* 添加发光效果 */
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4), 0 0 20px rgba(40, 167, 69, 0.2);
 }
 
 /* 响应式设计 */
@@ -352,8 +512,10 @@ body.animal-theme .menu-list h2 {
 
 /* 在菜单项上加入动物主题的效果 */
 .menu-item.animal-theme img {
-    border-radius: 4px;
-    border: 2px solid #f88032; /* 为图片加上橙色边框 */
+    border-radius: 12px !important;
+    border: 2px solid #f88032 !important; /* 为图片加上橙色边框 */
+    height: 200px !important; /* 确保正方形高度 */
+    object-fit: cover !important;
 }
 
 /* 菜品分类按钮 hover 效果 */
@@ -420,8 +582,10 @@ body.animal-theme .menu-list h2 {
 
 /* 修改菜品图片的边框颜色 */
 .menu-item.animal-theme img {
-    border-radius: 4px;
-    border: 2px solid #f88032; /* 菜品图片的橙色边框 */
+    border-radius: 12px !important;
+    border: 2px solid #f88032 !important; /* 菜品图片的橙色边框 */
+    height: 200px !important; /* 确保正方形高度 */
+    object-fit: cover !important;
 }
 
 /* 菜品项的 hover 效果 */
@@ -452,16 +616,18 @@ body.animal-theme .menu-list h2 {
     color: #003366; /* 设置菜单文字的颜色为深蓝色 */
 }
 
-/* 修改菜单项的每个文章容器 */
+/* 修改菜单项的每个文章容器 - 已弃用，现在使用Grid布局 */
+/*
 .menu-list article {
-    background-color: transparent; /* 使菜单项的背景透明 */
+    background-color: transparent;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 边框保留轻微的阴影 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: calc(33.333% - 20px);
     margin: 10px;
     text-align: center;
 }
+*/
 
 .menu-list article button {
     background-color: #f88032;
@@ -806,8 +972,10 @@ body.night-theme {
 
 /* Add hover effect for the image in menu items */
 .menu-item.night-theme img {
-    border-radius: 8px;
-    border: 3px solid #00c4cc; /* Cyan border */
+    border-radius: 12px !important;
+    border: 3px solid #00c4cc !important; /* Cyan border */
+    height: 200px !important; /* 确保正方形高度 */
+    object-fit: cover !important;
 }
 
 .menu-item.night-theme img:hover {

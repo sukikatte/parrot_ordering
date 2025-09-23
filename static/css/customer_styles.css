@@ -56,17 +56,27 @@ nav ul li a.active {
 .dish-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
-    gap: 10px;
-    padding: 10px;
+    gap: 25px;  /* 增加菜品之间的间隔 */
+    padding: 30px 40px; /* 增加内边距：上下30px，左右40px */
+    margin: 0 auto; /* 居中显示 */
+    max-width: 1400px; /* 限制最大宽度 */
     width: 100%; /* 确保容器宽度占满页面 */
+    align-items: start; /* 确保所有item从顶部对齐，不受其他item高度影响 */
 }
 
 /* 菜品图片样式 */
 .dish img {
     width: 100%; /* 图片宽度占满父元素 */
-    height: auto; /* 高度自适应 */
-    border-radius: 4px;
-    object-fit: cover; /* 保证图片不变形 */
+    height: 200px; /* 调整为正方形高度 */
+    border-radius: 12px;
+    object-fit: cover; /* 保持图片比例 */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.dish img:hover {
+    transform: scale(1.05); /* 图片悬停时放大 */
 }
 
 /* 在详情页面时，减小图片的大小 */
@@ -131,7 +141,26 @@ nav ul li a.active {
 }
 
 .dish {
-    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 420px; /* 增加最小高度，为description预留空间 */
+    display: flex;
+    flex-direction: column; /* 使用垂直排列 */
+    justify-content: flex-start; /* 确保内容从顶部开始排列 */
+    align-self: start; /* 确保每个item独立对齐 */
+    transition: all 0.3s ease; /* 添加过渡动画 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+}
+
+.dish:hover {
+    transform: translateY(-5px); /* 悬停时向上移动 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
 
 /* 详情页菜品信息 */
@@ -151,18 +180,22 @@ nav ul li a.active {
 
 /* 按钮样式 */
 .dish button {
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #007BFF;
+    padding: 12px 20px;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .dish button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
 }
 
 /* 购物车表格样式 */
@@ -297,10 +330,73 @@ footer button:hover {
     cursor: pointer;
 }
 
-/* 响应式布局 */
+/* 空菜单提示样式 */
+.no-menu-message {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.no-menu-message h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.no-menu-message p {
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* 响应式布局优化 */
 @media (max-width: 1200px) {
+    .dish-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+        gap: 20px;
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dish-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2列布局 */
+        gap: 15px;
+        padding: 20px 15px;
+    }
+    
     .dish {
-        width: 100%;
+        min-height: 380px;
+        padding: 15px;
+    }
+    
+    .dish img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dish-grid {
+        grid-template-columns: 1fr; /* 单列布局 */
+        gap: 15px;
+        padding: 15px 10px;
+    }
+    
+    .dish {
+        min-height: 350px;
+        padding: 12px;
+    }
+    
+    .dish img {
+        height: 180px;
     }
 }
 

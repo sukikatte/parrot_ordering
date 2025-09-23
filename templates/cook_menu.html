@@ -26,9 +26,9 @@
     <section class="menu-list" id="menu-list">
         {% if dishes %}
         {% for dish in dishes %}
-        <div class="dish-item">
-            <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
-            <h3>{{ dish.name }}</h3>
+        <div class="menu-item">
+            <img src="{{ dish.image_url }}" alt="{{ dish.dish_name }}">
+            <h3>{{ dish.dish_name }}</h3>
             <p>Category: {{ dish.category }}</p>
             <p>Price: ${{ '%.2f' | format(dish.price | float) }}</p>
             <p>Quantity: {{ dish.quantity }}</p>
@@ -42,13 +42,28 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>You have not selected any dishes for today.</p>
+        <div class="no-dishes-message">
+            <h2>您还未上传今日菜品，请前往My Menu上传～</h2>
+            <p>请先选择您今天要制作的菜品和数量，然后提交菜单。</p>
+            <a href="{{ url_for('cook_dashboard') }}" class="go-to-menu-btn">前往My Menu</a>
+        </div>
         {% endif %}
     </section>
 
 
-<script src="/static/js/cook_dashboard.js"></script>
 <script>
+
+// 切换描述显示/隐藏的函数
+function toggleDescription(button, dishId) {
+    const description = document.getElementById('description-' + dishId);
+    if (description.style.display === 'none' || description.style.display === '') {
+        description.style.display = 'block';
+        button.textContent = 'Hide Description';
+    } else {
+        description.style.display = 'none';
+        button.textContent = 'View Description';
+    }
+}
 
 window.onload = function () {
     const savedTheme = localStorage.getItem('theme');

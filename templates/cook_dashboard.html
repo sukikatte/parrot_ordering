@@ -24,7 +24,7 @@
     <section class="menu-list" id="menu-list">
         {% if dishes %}
             {% for dish in dishes %}
-                <div class="dish-item">
+                <div class="menu-item">
                     <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
                     <h3>{{ dish.name }}</h3>
                     <p>Category: {{ dish.category }}</p>

@@ -1136,17 +1136,19 @@ def cook_dashboard():
 
                 existing_item = Menu.query.filter_by(dish_id=int(dish_id), date=today).first()
                 if existing_item and existing_item.cook_id != cook.cook_id:
-
                     return jsonify({'message': f'Dish with ID {dish_id} is already taken by another cook for today.'}), 400
-
-
-                menu_item = Menu(
-                    cook_id=cook.cook_id,
-                    dish_id=int(dish_id),
-                    date=today,
-                    quantity=quantity
-                )
-                db.session.add(menu_item)
+                elif existing_item and existing_item.cook_id == cook.cook_id:
+                    # 更新同一厨师的菜品数量
+                    existing_item.quantity = quantity
+                else:
+                    # 添加新的菜品
+                    menu_item = Menu(
+                        cook_id=cook.cook_id,
+                        dish_id=int(dish_id),
+                        date=today,
+                        quantity=quantity
+                    )
+                    db.session.add(menu_item)
             except ValueError:
                 continue
         db.session.commit()
@@ -1217,13 +1219,6 @@ def cook_menu():
         cook_id=cook.cook_id,
         date=today
     ).all()
-
-
-    print("Menus retrieved:", menus)
-    print("Menus retrieved:")
-    for menu_item in menus:
-        print(f"Menu ID: {menu_item.menu_id}, Date: {menu_item.date}, Cook ID: {menu_item.cook_id}")
-
 
     dishes_with_quantities = [{
         'dish_id': menu_item.dish.dish_id,
