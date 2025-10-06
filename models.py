@@ -88,7 +88,7 @@ class ShoppingCartItem(db.Model):
     customer = db.relationship('Customer', backref=db.backref('cart_items', lazy=True))
 
 
-# 添加订单模型
+# Add order model
 class Order(db.Model):
     order_id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
@@ -102,7 +102,7 @@ class OrderItem(db.Model):
     order_item_id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('order.order_id'), nullable=False)
     dish_id = db.Column(db.Integer, db.ForeignKey('dish.dish_id'), nullable=False)
-    cook_id = db.Column(db.Integer, db.ForeignKey('cook.cook_id'), nullable=False)  # 新增
+    cook_id = db.Column(db.Integer, db.ForeignKey('cook.cook_id'), nullable=False)  # New
     quantity = db.Column(db.Integer, nullable=False)
 
     order = db.relationship('Order', backref=db.backref('order_items', lazy=True))

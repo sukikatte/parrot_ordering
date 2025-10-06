@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await sendToServer('/delete_profile', 'POST', {});
             if (result) {
                 if (result.success) {
-                    alert(result.message); // 显示成功消息
-                    window.location.href = '/'; // 重定向到登录页面
+                    alert(result.message); // Show success message
+                    window.location.href = '/'; // Redirect to login page
                 } else {
                     alert(result.message || 'Failed to delete your account. Please try again.');
                 }

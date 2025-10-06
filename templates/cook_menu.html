@@ -43,9 +43,9 @@
         {% endfor %}
         {% else %}
         <div class="no-dishes-message">
-            <h2>您还未上传今日菜品，请前往My Menu上传～</h2>
-            <p>请先选择您今天要制作的菜品和数量，然后提交菜单。</p>
-            <a href="{{ url_for('cook_dashboard') }}" class="go-to-menu-btn">前往My Menu</a>
+            <h2>You haven't uploaded today's dishes yet, please go to My Menu to upload~</h2>
+            <p>Please first select the dishes and quantities you want to make today, then submit the menu.</p>
+            <a href="{{ url_for('cook_dashboard') }}" class="go-to-menu-btn">Go to My Menu</a>
         </div>
         {% endif %}
     </section>
@@ -53,7 +53,7 @@
 
 <script>
 
-// 切换描述显示/隐藏的函数
+// Function to toggle description display/hide
 function toggleDescription(button, dishId) {
     const description = document.getElementById('description-' + dishId);
     if (description.style.display === 'none' || description.style.display === '') {

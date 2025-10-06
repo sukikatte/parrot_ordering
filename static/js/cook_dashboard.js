@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
             loadDishes();  // Load all dishes
-            // loadTodayMenu();  // 不再需要，因为cook_menu.html直接显示后端数据
+            // loadTodayMenu();  // No longer needed as cook_menu.html directly displays backend data
             document.getElementById('dishForm').onsubmit = handleDishFormSubmit; // Set form submit handler
         });
-// 加载所有菜品列表
+// Load all dish list
 function loadDishes() {
     fetch('/api/cook_dashboard')
         .then(response => {
@@ -13,9 +13,9 @@ function loadDishes() {
             return response.json();
         })
         .then(dishes => {
-            console.log(dishes); // 输出加载的菜品数据
+            console.log(dishes); // Output loaded dish data
             const menuList = document.getElementById('menu-list');
-            menuList.innerHTML = ''; // 清空当前菜单
+            menuList.innerHTML = ''; // Clear current menu
             dishes.forEach(dish => {
                 const dishItem = document.createElement('div');
                 dishItem.className = 'menu-item';
@@ -46,7 +46,7 @@ function loadDishes() {
 }
 
 
-// 切换描述的显示和隐藏
+// Toggle description display and hide
 function toggleDescription(button, dishId) {
     const descriptionElement = document.getElementById('description-' + dishId);
     if (descriptionElement.style.display === 'none') {
@@ -59,7 +59,7 @@ function toggleDescription(button, dishId) {
 }
 
 
-// 处理表单提交，将选中的菜品和数量提交到服务器
+// Handle form submission, submit selected dishes and quantities to server
 function submitMenu() {
     const formData = new FormData();
     const dishItems = document.querySelectorAll('.menu-item');
@@ -92,7 +92,7 @@ function submitMenu() {
         })
         .then(data => {
             alert(data.message);
-            // 跳转到Today's Menu页面查看提交的菜品
+            // Jump to Today's Menu page to view submitted dishes
             window.location.href = '/cook_menu';
         })
         .catch(error => {

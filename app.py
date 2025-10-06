@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'your_secret_key'  # 设置安全密钥
+app.secret_key = 'your_secret_key'  # Set security key
 
 # Configure the SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -197,7 +197,7 @@ def delete_profile():
         db.session.delete(user)
         db.session.commit()
 
-        # 清除会话
+        # Clear session
         session.pop('user', None)
 
         return jsonify({"success": True, "message": "Your account has been deleted successfully."})
@@ -272,7 +272,7 @@ def admin_delete_menu_item(menu_id):
 def admin_accounts_page():
     if 'user' not in session or session['user']['role'] != 'Administrator':
         return redirect(url_for('login_page'))
-    return render_template('admin_accounts.html')  # 渲染 HTML 页面
+    return render_template('admin_accounts.html')  # Render HTML page
 
 # apis that provide user data
 @app.route('/api/admin_accounts', methods=['GET'])
@@ -282,7 +282,7 @@ def admin_accounts_api():
 
     # Query parameter
     role_filter = request.args.get('role')  # Customer, Cook, Administrator, None
-    search_query = request.args.get('search')  # 搜索条件
+    search_query = request.args.get('search')  # Search criteria
 
     # Build query
     query = User.query
@@ -314,7 +314,7 @@ def admin_accounts_api():
     ]
     return jsonify(user_data)
 
-banned_users = set()  # 全局集合，存储被ban的用户ID
+banned_users = set()  # Global set to store banned user IDs
 
 @app.route('/admin_ban_user/<int:user_id>', methods=['POST'])
 def admin_ban_user(user_id):
@@ -326,7 +326,7 @@ def admin_ban_user(user_id):
         return jsonify({"message": "User not found"}), 404
 
     data = request.get_json()
-    action = data.get('action')  # 可能为 'ban' 或 'unban'
+    action = data.get('action')  # Could be 'ban' or 'unban'
 
     if action == 'ban':
         banned_users.add(user_id)
@@ -364,27 +364,27 @@ def admin_user_details(user_id):
                 DishReview.query.filter_by(cook_id=cook_id).delete()
                 ChefReply.query.filter_by(cook_id=cook_id).delete()
 
-            # 如果是Customer账号，清理与Customer关联的记录
+            # If it's a Customer account, clean up Customer-related records
             if user.customer:
                 customer_id = user.customer.customer_id
-                # 清理购物车项
+                # Clean up shopping cart items
                 ShoppingCartItem.query.filter_by(customer_id=customer_id).delete()
-                # 清理消息（作为发送者或接收者）
+                # Clean up messages (as sender or receiver)
                 Message.query.filter_by(sender_id=customer_id).delete()
                 Message.query.filter_by(receiver_id=customer_id).delete()
-                # 清理好友关系（作为发起者或接收者）
+                # Clean up friendships (as initiator or receiver)
                 Friendship.query.filter_by(customer_id=customer_id).delete()
                 Friendship.query.filter_by(friend_id=customer_id).delete()
-                # 清理订单项（需先删OrderItem再删Order）
+                # Clean up order items (need to delete OrderItem before Order)
                 order_ids = [o.order_id for o in Order.query.filter_by(customer_id=customer_id).all()]
                 for oid in order_ids:
                     OrderItem.query.filter_by(order_id=oid).delete()
-                # 清理订单
+                # Clean up orders
                 Order.query.filter_by(customer_id=customer_id).delete()
-                # 清理评价
+                # Clean up reviews
                 DishReview.query.filter_by(customer_id=customer_id).delete()
 
-            # 删除用户相关角色记录
+            # Delete user-related role records
             if user.customer:
                 db.session.delete(user.customer)
             elif user.cook:
@@ -392,7 +392,7 @@ def admin_user_details(user_id):
             elif user.administrator:
                 db.session.delete(user.administrator)
 
-            # 最后删除User本身
+            # Finally delete the User itself
             db.session.delete(user)
             db.session.commit()
             return jsonify({"message": "User deleted successfully"})
@@ -400,25 +400,25 @@ def admin_user_details(user_id):
             db.session.rollback()
             return jsonify({"message": f"Error deleting user: {e}"}), 500
 
-    # 分配类别的逻辑
+    # Category assignment logic
     if request.method == 'POST':
-        # 验证用户是否为厨师
+        # Verify if user is a cook
         cook = Cook.query.filter_by(user_id=user_id).first()
         if not cook:
             return jsonify({"message": "This user is not a cook and cannot be assigned a category."}), 400
 
-        # 获取管理员分配的类别
+        # Get admin-assigned categories
         category = request.form.get('category')
         if not category:
             return jsonify({"message": "No category selected."}), 400
 
         try:
-            # 更新厨师的类别
+            # Update cook categories
             cook.category = category
             db.session.commit()
 
-            # 渲染用户详细信息页面
-            categories = ['Desserts', 'Fast Food', 'Beverages', 'Hot Dishes', 'Vegetarian']  # 可分配的类别列表
+            # Render user details page
+            categories = ['Desserts', 'Fast Food', 'Beverages', 'Hot Dishes', 'Vegetarian']  # Assignable categories list
             return render_template(
                 'admin_user_details.html',
                 user=user,
@@ -430,8 +430,8 @@ def admin_user_details(user_id):
             db.session.rollback()
             return jsonify({"message": f"Error assigning category: {e}"}), 500
 
-    # 渲染用户详情页面
-    categories = ['Desserts', 'Fast Food', 'Beverages', 'Hot Dishes', 'Vegetarian']  # 可分配的类别列表
+    # Render user details page
+    categories = ['Desserts', 'Fast Food', 'Beverages', 'Hot Dishes', 'Vegetarian']  # Assignable categories list
     cook = Cook.query.filter_by(user_id=user_id).first()
     return render_template(
         'admin_user_details.html',
@@ -446,13 +446,13 @@ def admin_profile():
     if 'user' not in session or session['user']['role'] != 'Administrator':
         return redirect(url_for('login_page'))
 
-    # 获取当前登录的用户数据
+    # Get current logged-in user data
     user_data = User.query.filter_by(user_id=session['user']['user_id']).first()
     if not user_data:
-        return redirect(url_for('login_page'))  # 如果用户未找到，重定向到登录页面
+        return redirect(url_for('login_page'))  # If user not found, redirect to login page
 
     if request.method == 'POST':
-        # 假设用户在页面上选择了一个主题
+        # Assume user selected a theme on the page
         selected_theme = request.form.get('theme')
         session['theme'] = selected_theme  # 存储在 session 中
 
@@ -768,7 +768,7 @@ def customer_profile():
     if 'user' not in session or session['user']['role'] != 'Customer':
         return redirect(url_for('login_page'))
 
-    # 获取当前登录的用户数据
+    # Get current logged-in user data
     user_data = User.query.filter_by(user_id=session['user']['user_id']).first()
     if not user_data:
         return redirect(url_for('login_page'))
@@ -844,10 +844,10 @@ def customer_messages():
     if 'user' not in session or session['user']['role'] != 'Customer':
         return redirect(url_for('login_page'))
 
-    # 获取当前登录的用户数据
+    # Get current logged-in user data
     user_data = User.query.filter_by(user_id=session['user']['user_id']).first()
     if not user_data:
-        return redirect(url_for('login_page'))  # 如果用户未找到，重定向到登录页面
+        return redirect(url_for('login_page'))  # If user not found, redirect to login page
 
     # 从 session 中获取 user_id
     user_id = session['user_id']

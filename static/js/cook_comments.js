@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const reviewId = this.getAttribute('data-review-id');
             const replyForm = document.getElementById(`reply-form-${reviewId}`);
-            // 切换显示状态
+            // Toggle display state
             replyForm.style.display = replyForm.style.display === 'block' ? 'none' : 'block';
         });
     });
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.status === 'success') {
                     const replyForm = document.getElementById(`reply-form-${reviewId}`);
-                    const replyIconContainer = document.getElementById(`reply-icon-container-${reviewId}`); // 直接获取回复图标的容器
+                    const replyIconContainer = document.getElementById(`reply-icon-container-${reviewId}`); // Directly get reply icon container
 
                     const newReply = document.createElement('div');
                     newReply.classList.add('reply-card');
@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="reply-text"><strong>Chef Reply:</strong> ${data.reply.reply_text}</p>
                         <p class="reply-date"><small>${data.reply.created_at}</small></p>
                     `;
-                    // 在 Reply 图标的上方插入新回复
+                    // Insert new reply above Reply icon
                     replyIconContainer.parentNode.insertBefore(newReply, replyIconContainer);
 
-                    // 清空输入框并隐藏回复框
+                    // Clear input box and hide reply box
                     replyInput.value = '';
                     replyForm.style.display = 'none';
                 } else {

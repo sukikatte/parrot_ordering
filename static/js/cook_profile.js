@@ -177,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await sendToServer('/delete_profile', 'POST', {});
             if (result) {
                 if (result.success) {
-                    alert(result.message); // 显示成功消息
-                    window.location.href = '/'; // 重定向到登录页面
+                    alert(result.message); // Show success message
+                    window.location.href = '/'; // Redirect to login page
                 } else {
                     alert(result.message || 'Failed to delete your account. Please try again.');
                 }
@@ -230,30 +230,30 @@ window.onload = function () {
     }
 };
 
-// 选项卡功能
+// Tab functionality
 function openTab(evt, tabName) {
     var i, tabcontent, tabbuttons;
 
-    // 隐藏所有选项卡内容
+    // Hide all tab content
     tabcontent = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
         tabcontent[i].classList.remove("active");
     }
 
-    // 移除所有选项卡按钮的活动状态
+    // Remove active state from all tab buttons
     tabbuttons = document.getElementsByClassName("tab-button");
     for (i = 0; i < tabbuttons.length; i++) {
         tabbuttons[i].classList.remove("active");
     }
 
-    // 显示当前选项卡内容，并将按钮设为活动状态
+    // Show current tab content and set button as active
     document.getElementById(tabName).style.display = "block";
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
 }
 
-// 初始化默认选项卡
+// Initialize default tab
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("personal-info").style.display = "block";
 });

@@ -14,12 +14,12 @@ function loadDishesAjax() {
             container.innerHTML = '';
 
             if (data.length === 0) {
-                // 如果没有菜品，显示提示信息
+                // If no dishes, show prompt message
                 const noMenuMessage = document.createElement('div');
                 noMenuMessage.className = 'no-menu-message';
                 noMenuMessage.innerHTML = `
-                    <h2>今日暂无菜品</h2>
-                    <p>厨师们还没有上传今日菜单，请稍后再来查看～</p>
+                    <h2>No dishes available today</h2>
+                    <p>Chefs haven't uploaded today's menu yet, please check back later~</p>
                 `;
                 container.appendChild(noMenuMessage);
                 return;

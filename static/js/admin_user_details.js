@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const deleteButton = document.querySelector('.delete');
     const categorySelect = document.querySelector('#category-select');
     const assignCategoryButton = document.querySelector('#assign-category-button');
-    const banButton = document.getElementById('ban-button'); // 新增的Ban按钮
+    const banButton = document.getElementById('ban-button'); // New Ban button
 
     const userId = window.location.pathname.split('/').pop();
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             clearError(field);
 
-            // 验证规则
+            // Validation rules
             if (fieldName === 'email') {
                 if (!newValue.includes('@')) {
                     showError(field, 'Email must contain @.');
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const formData = new FormData();
                 formData.append('avatar', file);
 
-                // 上传头像到服务器
+                // Upload avatar to server
                 fetch(`/admin_update_avatar/${userId}`, {
                     method: 'POST',
                     body: formData,
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             alert(data.message);
-            // 切换按钮文字
+            // Toggle button text
             if (action === 'ban') {
                 banButton.textContent = 'Unban';
             } else {
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
         assignCategoryButton.addEventListener('click', assignCategory);
     }
 
-    // 为 ban 按钮添加事件监听
+    // Add event listener for ban button
     const banButtonElement = document.getElementById('ban-button');
     if (banButtonElement) {
         banButtonElement.addEventListener('click', toggleBan);

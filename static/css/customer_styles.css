@@ -1,13 +1,13 @@
 /* static/css/customer_styles.css */
 
-/* 基本样式重置 */
+/* Basic style reset */
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
     margin: 0;
     padding: 0;
     position: relative;
-    padding-bottom: 70px; /* 给页面底部留出空间 */
+    padding-bottom: 70px; /* Leave space for page bottom */
 }
 
 nav {
@@ -21,12 +21,12 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around; /* 平均分配导航项 */
+    justify-content: space-around; /* Distribute navigation items evenly */
     align-items: center;
 }
 
 nav ul li {
-    flex: 1; /* 让每个导航项平均分布 */
+    flex: 1; /* Let each navigation item distribute evenly */
 }
 
 nav ul li a {
@@ -35,7 +35,7 @@ nav ul li a {
     padding: 14px 16px;
     text-decoration: none;
     color: white;
-    font-size: 18px; /* 增加文字大小 */
+    font-size: 18px; /* Increase text size */
 }
 
 nav ul li a:hover,
@@ -44,14 +44,14 @@ nav ul li a.active {
     border-radius: 5px;
 }
 
-/* 菜单容器 */
+/* Menu container */
 .menu-container {
     padding: 10px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 厨师区域样式 */
+/* Chef area styles */
 .chef-section {
     margin-bottom: 40px;
 }
@@ -70,52 +70,52 @@ nav ul li a.active {
 }
 
 
-/* 菜品网格布局 */
+/* Dish grid layout */
 .dish-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 固定4列布局 */
-    gap: 25px;  /* 增加菜品之间的间隔 */
-    padding: 20px; /* 统一内边距 */
-    margin: 0 auto; /* 居中显示 */
-    max-width: 1400px; /* 限制最大宽度 */
-    width: 100%; /* 确保容器宽度占满页面 */
-    align-items: start; /* 确保所有item从顶部对齐，不受其他item高度影响 */
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4-column layout */
+    gap: 25px;  /* Increase spacing between dishes */
+    padding: 20px; /* Uniform padding */
+    margin: 0 auto; /* Center display */
+    max-width: 1400px; /* Limit maximum width */
+    width: 100%; /* Ensure container width fills page */
+    align-items: start; /* Ensure all items align from top, unaffected by other item heights */
 }
 
-/* 菜品图片样式 */
+/* Dish image styles */
 .dish img {
-    width: 100%; /* 图片宽度占满父元素 */
-    height: 200px; /* 调整为正方形高度 */
+    width: 100%; /* Image width fills parent element */
+    height: 200px; /* Adjust to square height */
     border-radius: 12px;
-    object-fit: cover; /* 保持图片比例 */
+    object-fit: cover; /* Maintain image proportions */
     margin-bottom: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .dish img:hover {
-    transform: scale(1.05); /* 图片悬停时放大 */
+    transform: scale(1.05); /* Image enlarges on hover */
 }
 
-/* 在详情页面时，减小图片的大小 */
+/* Reduce image size on detail page */
 .dish-info .dish-image img {
-    width: 100%; /* 图片在详情页变小 */
+    width: 100%; /* Image becomes smaller on detail page */
     height: auto;
 }
 
 .menu-item {
     background-color: rgba(255, 255, 255, 0.66);
-    display: grid;  /* 使用Grid布局 */
-    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
-    gap: 10px;  /* 菜品之间的间隔 */
+    display: grid;  /* Use Grid layout */
+    grid-template-columns: repeat(4, 1fr); /* Show 4 elements per row */
+    gap: 10px;  /* Spacing between dishes */
     padding: 10px;
 }
 
 
 .menu-item .name {
-    font-size: 18px; /* 菜品名称文字大小 */
+    font-size: 18px; /* Dish name text size */
     font-weight: bold;
-    margin-top: 10px; /* 给名称留点间距 */
+    margin-top: 10px; /* Leave some spacing for name */
 }
 .menu-item {
   font-size: 18px;
@@ -129,31 +129,31 @@ nav ul li a.active {
 }
 
 
-/* 菜品介绍区域 */
+/* Dish introduction area */
 .dish-details {
-    flex: 1; /* 菜品介绍区域占据剩余空间 */
+    flex: 1; /* Dish introduction area takes remaining space */
     font-size: 1rem;
     color: #131111;
     margin-bottom: 1rem;
 }
 
-/* 菜品名称 */
+/* Dish name */
 .dish h3 {
     font-size: 1.5rem;
     color: rgba(15, 98, 181, 0.8);
     margin: 10px 0;
 }
 
-/* 菜品描述 */
+/* Dish description */
 .dish p {
     font-size: 1rem;
     color: #4598ff;
     margin: 5px 0;
 }
 
-/* 详情页图片 */
+/* Detail page image */
 .dish-info .dish-image img {
-    width: 20%; /* 在详情页缩小图片 */
+    width: 20%; /* Shrink image on detail page */
     height: auto;
 
 }
@@ -163,11 +163,11 @@ nav ul li a.active {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 20px;
-    margin: 0; /* 移除margin-bottom，由grid gap处理间距 */
+    margin: 0; /* Remove margin-bottom, use grid gap for spacing */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    min-height: 600px; /* 稍微减少高度，配合更紧凑的布局 */
-    max-height: 600px; /* 稍微减少高度，配合更紧凑的布局 */
+    min-height: 600px; /* Slightly reduce height to match more compact layout */
+    max-height: 600px; /* Slightly reduce height to match more compact layout */
     display: flex;
     flex-direction: column; /* 使用垂直排列 */
     justify-content: space-between; /* 内容分布，按钮在底部 */
@@ -383,7 +383,7 @@ td img {
 /* 将按钮固定在页面底部并居中 */
 body {
     position: relative; /* 确保页面内容可以被定位 */
-    padding-bottom: 70px; /* 给页面底部留出空间 */
+    padding-bottom: 70px; /* Leave space for page bottom */
 }
 
 form {
@@ -715,7 +715,7 @@ footer button:hover {
 /* 将按钮固定在页面底部并居中 */
 body {
     position: relative; /* 确保页面内容可以被定位 */
-    padding-bottom: 70px; /* 给页面底部留出空间 */
+    padding-bottom: 70px; /* Leave space for page bottom */
 }
 
 form {

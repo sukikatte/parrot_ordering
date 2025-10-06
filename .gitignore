@@ -48,7 +48,8 @@ instance/
 # Uploads
 static/uploads/
 
-# SQLite databases
-*.db
-*.sqlite3
+# SQLite databases (但保留instance/users.db作为示例数据)
+# *.db
+# *.sqlite3
+users.db
 

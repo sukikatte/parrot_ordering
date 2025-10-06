@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const friendUsername = document.getElementById('friend-username');
     const messageHistory = document.getElementById('message-history');
     const replyBtn = document.getElementById('reply-btn');
-    const replySection = document.getElementById('reply-section'); // 回复区域
-    const replyInput = document.getElementById('reply-input'); // 输入框
-    const avatarImg = document.querySelector('#reply-section .reply-body img'); // 回复框中的头像元素
+    const replySection = document.getElementById('reply-section'); // Reply area
+    const replyInput = document.getElementById('reply-input'); // Input box
+    const avatarImg = document.querySelector('#reply-section .reply-body img'); // Avatar element in reply box
 
-    const sendBtn = document.getElementById('send-btn'); // 发送按钮
+    const sendBtn = document.getElementById('send-btn'); // Send button
 
-    let customerAvatar = '/static/images/default_avatar.png'; // 默认头像路径
-    let friendId = null; // 全局变量，存储当前聊天对象的 ID
+    let customerAvatar = '/static/images/default_avatar.png'; // Default avatar path
+    let friendId = null; // Global variable to store current chat object ID
 
     // Dynamically get the customer ID from the dataset
     const customerId = document.body.dataset.customerId;
@@ -39,14 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Tab navigation
     function showTab(tab) {
-        // 隐藏所有 tab 内容
+        // Hide all tab content
         [messagesList, newFriendsList, addFriendsList, messageDetailsContainer].forEach(el => {
             el.classList.add('hidden');
-            el.style.display = 'none'; // 确保隐藏
+            el.style.display = 'none'; // Ensure hidden
         });
         // 显示目标 tab
         tab.classList.remove('hidden');
-        tab.style.display = 'block'; // 确保显示
+        tab.style.display = 'block'; // Ensure displayed
     }
 
 
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load message details
     function loadMessageDetails(id) {
-        friendId = id; // 设置当前聊天对象的 friendId
+        friendId = id; // Set current chat object friendId
         fetch(`/message_details/${friendId}`)
             .then(response => response.json())
             .then(data => {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Hide message list and show message details
                 showTab(messageDetailsContainer);
 
-                // 检查容器的类和样式
+                // Check container class and style
                 console.log('Message Details Container Class:', messageDetailsContainer.classList);
                 console.log('Message Details Container Style:', messageDetailsContainer.style);
 
@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Back to messages list
     backToMessagesBtn.addEventListener('click', () => {
-        showTab(messagesList); // 显示消息列表页
-        loadMessages();  // 重新加载消息列表
+        showTab(messagesList); // Show message list page
+        loadMessages();  // Reload message list
     });
 
     // Reply button functionality
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             customerAvatar = data.avatar || '/static/images/default_avatar.png';
-            avatarImg.src = customerAvatar; // 设置编辑框中的头像
+            avatarImg.src = customerAvatar; // Set avatar in edit box
         })
         .catch(error => console.error('Error fetching customer avatar:', error));
 
@@ -212,11 +212,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // 清空输入框
+                // Clear input box
                 replyInput.value = '';
-                // 隐藏回复区域
+                // Hide reply area
                 replySection.classList.remove('visible');
-                // 重新加载所有消息历史
+                // Reload all message history
                 loadMessageDetails(friendId);
             } else {
                 alert('Failed to send message!');
@@ -335,12 +335,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addFriend = function (button, friendId) {
-        button.disabled = true; // 禁用按钮
-        button.textContent = 'Processing...'; // 显示加载提示
+        button.disabled = true; // Disable button
+        button.textContent = 'Processing...'; // Show loading prompt
         fetch('/add_friend', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ customer_id: customerId, friend_id: friendId }) // 动态使用 customer_id
+            body: JSON.stringify({ customer_id: customerId, friend_id: friendId }) // Dynamically use customer_id
         })
             .then(response => response.json())
             .then(data => {
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Error adding friend. Please try again later.');
             })
             .finally(() => {
-                button.disabled = false; // 恢复按钮
+                button.disabled = false; // Restore button
                 button.textContent = 'Add';
             });
     };
