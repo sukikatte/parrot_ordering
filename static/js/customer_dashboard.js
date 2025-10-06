@@ -40,27 +40,36 @@ function loadDishesAjax() {
                     const dishItem = document.createElement('div');
                     dishItem.className = 'dish';
 
-                    dishItem.innerHTML = `
-                        <img src="${dish.image_url}" alt="${dish.dish_name}">
-                        <h3>${dish.dish_name}</h3>
-                        <p>Category: ${dish.category}</p>
-                        <p>Price: $${dish.price}</p>
-                        <p>Available: ${dish.quantity}</p>
-                        <p>Cooked by: ${dish.cook_name}</p>
+                    const dishInfo = `
+                        <div class="dish-info">
+                            <img src="${dish.image_url}" alt="${dish.dish_name}">
+                            <h3>${dish.dish_name}</h3>
+                            <p><strong>Category:</strong> ${dish.category}</p>
+                            <p><strong>Price:</strong> $${dish.price}</p>
+                            <p><strong>Available:</strong> ${dish.quantity}</p>
+                            <p><strong>Cooked by:</strong> ${dish.cook_name}</p>
+                        </div>
                     `;
 
+                    let actionsHTML = '';
                     if (dish.quantity > 0) {
-                        dishItem.innerHTML += `
-                            <input type="number" id="quantity_${dish.dish_id}" value="1" min="1" max="${dish.quantity}">
-                            <button onclick="addToCart('${dish.dish_id}')">Add to Cart</button>
+                        actionsHTML = `
+                            <div class="dish-actions">
+                                <input type="number" id="quantity_${dish.dish_id}" value="1" min="1" max="${dish.quantity}">
+                                <button onclick="addToCart('${dish.dish_id}')">Add to Cart</button>
+                                <a href="/dish/${dish.dish_id}" class="view-description-btn">View Description</a>
+                            </div>
                         `;
                     } else {
-                        dishItem.innerHTML += `<p style="color: red; font-weight: bold;">Out of Stock</p>`;
+                        actionsHTML = `
+                            <div class="dish-actions">
+                                <p style="color: red; font-weight: bold; margin: 0; text-align: center; font-size: 0.8rem;">Out of Stock</p>
+                                <a href="/dish/${dish.dish_id}" class="view-description-btn">View Description</a>
+                            </div>
+                        `;
                     }
 
-                    // Modify the View Description button to link to a new page
-                    dishItem.innerHTML += `<a href="/dish/${dish.dish_id}" class="view-description-btn">View Description</a>`;
-
+                    dishItem.innerHTML = `<div class="dish-content">${dishInfo}${actionsHTML}</div>`;
                     dishGrid.appendChild(dishItem);
                 });
 

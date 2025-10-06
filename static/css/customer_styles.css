@@ -51,13 +51,31 @@ nav ul li a.active {
     margin: 0 auto;
 }
 
+/* 厨师区域样式 */
+.chef-section {
+    margin-bottom: 40px;
+}
+
+.chef-section h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
 
 /* 菜品网格布局 */
 .dish-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 每行显示4个元素 */
+    grid-template-columns: repeat(4, 1fr); /* 固定4列布局 */
     gap: 25px;  /* 增加菜品之间的间隔 */
-    padding: 30px 40px; /* 增加内边距：上下30px，左右40px */
+    padding: 20px; /* 统一内边距 */
     margin: 0 auto; /* 居中显示 */
     max-width: 1400px; /* 限制最大宽度 */
     width: 100%; /* 确保容器宽度占满页面 */
@@ -145,16 +163,19 @@ nav ul li a.active {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 0; /* 移除margin-bottom，由grid gap处理间距 */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    min-height: 420px; /* 增加最小高度，为description预留空间 */
+    min-height: 600px; /* 稍微减少高度，配合更紧凑的布局 */
+    max-height: 600px; /* 稍微减少高度，配合更紧凑的布局 */
     display: flex;
     flex-direction: column; /* 使用垂直排列 */
-    justify-content: flex-start; /* 确保内容从顶部开始排列 */
-    align-self: start; /* 确保每个item独立对齐 */
+    justify-content: space-between; /* 内容分布，按钮在底部 */
     transition: all 0.3s ease; /* 添加过渡动画 */
     backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+    position: relative;
+    overflow: visible; /* 改为visible确保内容不被裁剪 */
+    pointer-events: auto; /* 确保可以交互 */
 }
 
 .dish:hover {
@@ -178,24 +199,136 @@ nav ul li a.active {
 
 
 
+/* 菜品内容区域 */
+.dish-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto !important; /* 确保内容区域可交互 */
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* 菜品信息区域 */
+.dish-info {
+    flex: 1;
+    margin-bottom: 8px; /* 大幅减少底部间距 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.dish-info p {
+    margin: 2px 0; /* 减少段落间距 */
+    font-size: 0.9rem; /* 稍微增加字体 */
+    line-height: 1.2; /* 缩短行间距 */
+    color: #333; /* 改为黑色 */
+}
+
+.dish-info h3 {
+    margin: 6px 0 8px 0; /* 减少标题间距 */
+    font-size: 1.2rem; /* 稍微增加标题字体 */
+    line-height: 1.2; /* 缩短行间距 */
+    color: #222; /* 改为深黑色 */
+}
+
+/* 按钮区域 */
+.dish-actions {
+    margin-top: auto !important;
+    padding-top: 8px !important; /* 大幅减少顶部间距 */
+    flex-shrink: 0 !important; /* 防止按钮区域被压缩 */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important; /* 减少按钮之间的间距 */
+    visibility: visible !important; /* 确保按钮区域可见 */
+    opacity: 1 !important; /* 确保按钮区域不透明 */
+    pointer-events: auto !important; /* 确保可以交互 */
+    position: relative !important;
+    z-index: 5 !important; /* 确保在其他元素之上 */
+    min-height: 160px !important; /* 稍微减少按钮区域高度 */
+}
+
 /* 按钮样式 */
 .dish button {
-    padding: 12px 20px;
-    margin-top: 15px;
-    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    padding: 12px 16px !important;
+    margin: 0 !important; /* 移除margin，使用gap处理间距 */
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2) !important;
+    width: 100% !important;
+    font-size: 0.95rem !important; /* 稍微减少按钮字体 */
+    display: block !important; /* 确保按钮显示 */
+    visibility: visible !important; /* 确保按钮可见 */
+    opacity: 1 !important; /* 确保按钮不透明 */
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .dish button:hover {
     background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* 数量输入框样式 */
+.dish input[type="number"] {
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 0 !important; /* 移除margin，使用gap处理间距 */
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    text-align: center !important;
+    transition: border-color 0.3s ease !important;
+    background-color: white !important;
+    color: #333 !important;
+    pointer-events: auto !important; /* 确保可以交互 */
+    position: relative !important;
+    z-index: 10 !important; /* 确保在其他元素之上 */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-sizing: border-box !important;
+}
+
+.dish input[type="number"]:focus {
+    outline: none !important;
+    border-color: #007BFF !important;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
+    background-color: white !important;
+}
+
+/* 查看描述按钮样式 */
+.view-description-btn {
+    display: inline-block !important;
+    margin: 0 !important; /* 移除margin，使用gap处理间距 */
+    padding: 10px 14px !important;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 1px 4px rgba(40, 167, 69, 0.2) !important;
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.view-description-btn:hover {
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    text-decoration: none;
+    color: white;
 }
 
 /* 购物车表格样式 */
@@ -362,7 +495,7 @@ footer button:hover {
     .dish-grid {
         grid-template-columns: repeat(3, 1fr); /* 3列布局 */
         gap: 20px;
-        padding: 25px 30px;
+        padding: 20px;
     }
 }
 
@@ -370,16 +503,22 @@ footer button:hover {
     .dish-grid {
         grid-template-columns: repeat(2, 1fr); /* 2列布局 */
         gap: 15px;
-        padding: 20px 15px;
-    }
-    
-    .dish {
-        min-height: 380px;
         padding: 15px;
     }
     
+    .dish {
+        padding: 15px;
+        min-height: 550px;
+        max-height: 550px;
+    }
+    
     .dish img {
-        height: 200px;
+        height: 160px;
+    }
+    
+    .chef-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
     }
 }
 
@@ -387,36 +526,26 @@ footer button:hover {
     .dish-grid {
         grid-template-columns: 1fr; /* 单列布局 */
         gap: 15px;
-        padding: 15px 10px;
+        padding: 10px;
     }
     
     .dish {
-        min-height: 350px;
         padding: 12px;
+        min-height: 500px;
+        max-height: 500px;
     }
     
     .dish img {
-        height: 180px;
+        height: 140px;
+    }
+    
+    .chef-section h2 {
+        font-size: 1.3rem;
+        padding: 12px;
+        margin-bottom: 15px;
     }
 }
 
-@media (max-width: 768px) {
-    .dish {
-        flex: 1 1 calc(50% - 20px);
-    }
-    th, td {
-        padding: 8px;
-    }
-    td img {
-        max-width: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    .dish {
-        flex: 1 1 100%;
-    }
-}
 
 /* 个人资料容器 */
 .customer-profile-container {
@@ -875,55 +1004,6 @@ form {
     }
 }
 
-        /* 保留之前的样式即可，或根据需要调整 */
-        .menu-container {
-            padding: 20px;
-        }
-        .chef-section {
-            margin-bottom: 40px;
-        }
-        .chef-section h2 {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            color: #333;
-        }
-        .dish-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin: 20px;
-        }
-        .dish {
-            width: 23%;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            box-sizing: border-box;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-        .dish input[type="number"] {
-            width: 40%;
-            margin-right: 10px;
-            display: inline-block;
-            height: 26px;
-        }
-        .dish button {
-            width: 45%;
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .dish button:hover {
-            background-color: #0056b3;
-        }
 
 body.animal-theme {
     background-image: url("static/images/bg01.jpg");
