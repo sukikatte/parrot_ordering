@@ -590,7 +590,7 @@ body.night-theme .admin-profile-container {
  */
 
 body.animal-theme {
-    background-image: url("static/images/bg01.jpg");
+    background-image: url("/static/images/bg01.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -599,6 +599,21 @@ body.animal-theme {
     margin: 0;
     padding: 0;
     height: 100vh;
+}
+
+/* Animal Theme 1 - bg01.jpg */
+body.animal-theme.theme-1 {
+    background-image: url("/static/images/bg01.jpg");
+}
+
+/* Animal Theme 2 - bg02.jpg */
+body.animal-theme.theme-2 {
+    background-image: url("/static/images/bg02.jpg");
+}
+
+/* Animal Theme 3 - bg03.jpg */
+body.animal-theme.theme-3 {
+    background-image: url("/static/images/bg03.jpg");
 }
 
 nav.animal-theme {

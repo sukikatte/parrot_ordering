@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Test - Parrot Ordering</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .theme-test {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: black; }
+        
+        /* Animal theme backgrounds */
+        body.animal-theme {
+            background-image: url("/static/images/bg01.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+        
+        body.animal-theme.theme-1 {
+            background-image: url("/static/images/bg01.jpg");
+        }
+        
+        body.animal-theme.theme-2 {
+            background-image: url("/static/images/bg02.jpg");
+        }
+        
+        body.animal-theme.theme-3 {
+            background-image: url("/static/images/bg03.jpg");
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🦜 Parrot Ordering - Background Test</h1>
+        <p>This page tests the animal theme backgrounds for the Parrot Ordering platform.</p>
+        
+        <div class="theme-test">
+            <h2>Animal Theme Backgrounds</h2>
+            <p>Click the buttons below to test different animal theme backgrounds:</p>
+            
+            <button class="btn-primary" onclick="switchTheme('classic')">Classic Theme</button>
+            <button class="btn-success" onclick="switchAnimalTheme('theme-1')">Animal Theme 1 (bg01.jpg)</button>
+            <button class="btn-warning" onclick="switchAnimalTheme('theme-2')">Animal Theme 2 (bg02.jpg)</button>
+            <button class="btn-primary" onclick="switchAnimalTheme('theme-3')">Animal Theme 3 (bg03.jpg)</button>
+        </div>
+        
+        <div class="theme-test">
+            <h2>Current Status</h2>
+            <p id="current-theme">Current theme: Classic</p>
+            <p id="current-variant">Current variant: None</p>
+        </div>
+        
+        <div class="theme-test">
+            <h2>Instructions</h2>
+            <ol>
+                <li>Click "Animal Theme 1" to test bg01.jpg background</li>
+                <li>Click "Animal Theme 2" to test bg02.jpg background</li>
+                <li>Click "Animal Theme 3" to test bg03.jpg background</li>
+                <li>Click "Classic Theme" to return to normal background</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function switchTheme(theme) {
+            // Remove all existing themes and theme variants
+            document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme', 'theme-1', 'theme-2', 'theme-3');
+            
+            // Add the new theme class
+            document.body.classList.add(theme + '-theme');
+            
+            // Update status
+            document.getElementById('current-theme').textContent = `Current theme: ${theme}`;
+            document.getElementById('current-variant').textContent = 'Current variant: None';
+            
+            // Show notification
+            showNotification(`${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme Applied`);
+        }
+        
+        function switchAnimalTheme(variant) {
+            // First apply animal theme if not already applied
+            if (!document.body.classList.contains('animal-theme')) {
+                document.body.classList.add('animal-theme');
+            }
+            
+            // Remove existing variants
+            document.body.classList.remove('theme-1', 'theme-2', 'theme-3');
+            
+            // Add the new variant
+            document.body.classList.add(variant);
+            
+            // Update status
+            document.getElementById('current-theme').textContent = 'Current theme: animal';
+            document.getElementById('current-variant').textContent = `Current variant: ${variant}`;
+            
+            // Show notification
+            showNotification(`Animal Theme ${variant.replace('theme-', '')} Applied`);
+        }
+        
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

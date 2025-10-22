@@ -138,8 +138,8 @@ window.onload = function () {
 
 // Switch theme across the page
 function switchTheme(theme) {
-    // Remove all existing themes
-    document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+    // Remove all existing themes and theme variants
+    document.body.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme', 'theme-1', 'theme-2', 'theme-3');
     
     const elementsToUpdate = [
         document.body, 
@@ -154,13 +154,29 @@ function switchTheme(theme) {
     // Add the new theme class
     elementsToUpdate.forEach(element => {
         if (element) {
-            element.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme');
+            element.classList.remove('animal-theme', 'night-theme', 'parrot-theme', 'classic-theme', 'theme-1', 'theme-2', 'theme-3');
             element.classList.add(theme + '-theme');
         }
     });
 
+    // Handle animal theme variants
+    if (theme === 'animal') {
+        // Check if user has a specific animal theme preference
+        const animalThemeVariant = localStorage.getItem('animalThemeVariant') || 'theme-1';
+        document.body.classList.add(animalThemeVariant);
+    }
+
     // Store the selected theme in localStorage
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('masterTheme', theme);
+}
+
+// Function to switch animal theme background
+function switchAnimalTheme(variant) {
+    if (document.body.classList.contains('animal-theme')) {
+        document.body.classList.remove('theme-1', 'theme-2', 'theme-3');
+        document.body.classList.add(variant);
+        localStorage.setItem('animalThemeVariant', variant);
+    }
 }
 
 // Handle theme change from a select dropdown or button

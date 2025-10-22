@@ -144,12 +144,22 @@
                         <option value="night">Night Mode</option>
                         <option value="animal">Cute Animals</option>
                     </select>
+                    
+                    <div class="animal-theme-selector" style="display: none;">
+                        <label for="animal-theme-variant">Animal Background:</label>
+                        <select id="animal-theme-variant" onchange="changeAnimalTheme()">
+                            <option value="theme-1">Background 1</option>
+                            <option value="theme-2">Background 2</option>
+                            <option value="theme-3">Background 3</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="/static/js/customer_profile.js"></script>
+    <script src="/static/js/theme-switcher.js"></script>
 
 </body>
 </html>
